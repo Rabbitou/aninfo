@@ -4,7 +4,7 @@
 
 @layer utilities {
   .btn-default {
-    @apply py-1 px-4 bg-gray-100 dark:bg-black  hover:bg-transparent hover:text-white  transition-colors dark:hover:bg-transparent;
+    @apply py-1 px-4 bg-black  hover:bg-transparent hover:text-white  transition-colors dark:hover:bg-transparent;
   }
   .bg-gradient-purple {
     @apply bg-gradient-to-r from-[#DA22FF] to-[#9733EE];
