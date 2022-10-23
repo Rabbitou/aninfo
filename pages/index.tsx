@@ -2,25 +2,55 @@ import Head from "next/head";
 import React from "react";
 import Animedata from "../components/AnimeInfo/Animedata";
 import Gradient from "../components/Gradientborder/Gradient";
+import { endpoint } from "../endpoint/endpoint";
+import { usePopularAnime } from "../hooks/usePopularAnime";
+import { usePopularMovie } from "../hooks/usePopularMovie";
+import { useTrendingAnime } from "../hooks/useTrendingAnime";
 
 export default function Home() {
+  const { data: datatrending } = useTrendingAnime(20);
+  const { data: popularanime } = usePopularAnime(20);
+  const { data: popularmovie } = usePopularMovie(20);
+  if (!datatrending) return <h2>Loading...</h2>;
+  if (!popularanime) return <h2>Loading...</h2>;
+  if (!popularmovie) return <h2>Loading...</h2>;
   return (
     <>
       <Head>
         <title>Home</title>
       </Head>
-      <div className="flex">
-        <div className="seasondiv w-full">
-          <div className="titleseason">
-            <h2 className="p-4">Season Anime</h2>
+      <div className="flex flex-col">
+        <div className="trendingdiv w-full">
+          <div className="titletrending">
+            <h2 className="p-4 capitalize">trending now</h2>
             <hr className="mx-4" />
           </div>
-          <div className="animeseasonlist m-4 grid xs:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
-            <Animedata />
-            <Animedata />
-            <Animedata />
-            <Animedata />
-            <Animedata />
+          <div className="animeseasonlist m-4 flex flex-wrap justify-center xs:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+            {datatrending.map((anime) => (
+              <Animedata key={anime.id} data={anime} />
+            ))}
+          </div>
+        </div>
+        <div className="populardiv w-full">
+          <div className="titlepopular">
+            <h2 className="p-4 capitalize">popular anime</h2>
+            <hr className="mx-4" />
+          </div>
+          <div className="popularlist m-4 flex flex-wrap justify-center xs:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+            {popularanime.map((anime) => (
+              <Animedata key={anime.id} data={anime} />
+            ))}
+          </div>
+        </div>
+        <div className="popularmoviediv w-full">
+          <div className="titlepopularmovie">
+            <h2 className="p-4 capitalize">popular movies</h2>
+            <hr className="mx-4" />
+          </div>
+          <div className="popularmovielist m-4 flex flex-wrap justify-center xs:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+            {popularmovie.map((anime) => (
+              <Animedata key={anime.id} data={anime} />
+            ))}
           </div>
         </div>
       </div>

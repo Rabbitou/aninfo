@@ -19,6 +19,9 @@ export default function Navbar() {
             Dark
           </button>
         </Gradient>
+        <li>
+          <Link href="Search">Search</Link>
+        </li>
         <li>Anime List</li>
         <li>
           <button>Sign in</button>
