@@ -18,16 +18,18 @@ export default function Animedata({ data }: { data: Anime }) {
         </div>
         <div className="synopsis flex text-white  flex-col items-center justify-center bg-blue-400 dark:bg-transparent h-[250px] md:h-full">
           <div className="titleepisodes flex flex-col items-center space-x-2">
-            <h2 className="animetitle p-2 text-center">{data.title.romaji}</h2>
+            <h2 className="animetitle p-2 text-center">
+              {data.title.romaji || "?"}
+            </h2>
             <div className="episodesinfo flex flex-col items-center">
               <div className="episodes px-2 text-xs font-bold">
-                Episode 2 of {data.episodes} in
+                Episode 2 of {data.episodes || "?"} in
               </div>
               <div className="timeepisode text-xs"> 2 days, 5 hours</div>
             </div>
           </div>
           <div className="detailsstudio p-4 max-h-44 overflow-y-auto text-center text-xs flex flex-col">
-            <span className="">{parse(data.description)}</span>
+            <span className="">{parse(data?.description || "")}</span>
             <span className="">
               Studio:{" "}
               {data.studios.nodes.length > 0 ? data.studios.nodes[0].name : "?"}
@@ -40,12 +42,14 @@ export default function Animedata({ data }: { data: Anime }) {
         <div className="ratingstatus flex md:flex-row flex-col items-center justify-center space-x-4 bg-[#CACACA] dark:bg-[#2B2B2B] p-2">
           <div className="rating flex items-center">
             <img src="/icons8-star-48.png" className="w-5 h-5 mx-1" />{" "}
-            {data.averageScore / 10}
+            {data.averageScore / 10 || "?"}
           </div>
           <div className="status py-1 text-xs md:text-sm">
-            {data.format}, Year |{" "}
-            <span className="capitalize">{data.status.toLowerCase()}</span> |{" "}
-            {data.episodes} eps, {data.duration} min
+            {data.format || "?"}, Year |{" "}
+            <span className="capitalize">
+              {data.status?.toLowerCase() || "?"}
+            </span>{" "}
+            | {data.episodes || "?"} eps, {data.duration || "?"} min
           </div>
         </div>
         <div className="genre bg-[#AFAFAF] dark:bg-[#444444] flex-1 flex  items-center justify-center">

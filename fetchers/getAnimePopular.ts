@@ -11,7 +11,7 @@ export const getAnimePopular = async (perPage: number): Promise<Anime[]> => {
     gql`
       query {
         Page(page: 1, perPage: ${perPage}) {
-          media(sort: POPULARITY_DESC, type: ANIME, format: TV) {
+          media(sort: POPULARITY_DESC, type: ANIME, format: TV, isAdult: false) {
             id
             averageScore
             title {

@@ -5,7 +5,7 @@ export default function InputTextCustom({
   onChange,
 }: {
   place: string;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onChange: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
   return (
     <div>

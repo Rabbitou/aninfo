@@ -1,5 +1,9 @@
 import React from "react";
-import Select, { IndicatorSeparatorProps, StylesConfig } from "react-select";
+import Select, {
+  IndicatorSeparatorProps,
+  MultiValue,
+  StylesConfig,
+} from "react-select";
 import { GenreOptions } from "../../types/GenreOptions";
 
 const indicatorSeparatorStyle = {
@@ -48,17 +52,27 @@ const styles: StylesConfig = {
     ...css,
     background: "#707070",
     ":hover": { background: "#888" },
+    transition: ".3s",
   }),
 };
 
 export default function Multipleselector({
   options,
+  setOptions,
 }: {
-  options?: GenreOptions[];
+  options: GenreOptions[];
+  setOptions: React.Dispatch<React.SetStateAction<string[] | null>>;
 }) {
   return (
     <Select
       closeMenuOnSelect={false}
+      defaultValue={null}
+      onChange={(e) => {
+        const newGenreList = (e as GenreOptions[]).map(
+          (option) => (option as GenreOptions).value
+        );
+        setOptions(newGenreList.length === 0 ? null : newGenreList);
+      }}
       // components={{ IndicatorSeparator }}
       // defaultValue={[colourOptions[4], colourOptions[5]]}
       isMulti

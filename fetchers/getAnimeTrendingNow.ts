@@ -13,7 +13,7 @@ export const getAnimeTrendingNow = async (
     gql`
       query {
         Page(page: 1, perPage: ${perPage}) {
-          media(sort: TRENDING_DESC, type: ANIME, format: TV) {
+          media(sort: TRENDING_DESC, isAdult: false, type: ANIME, format: TV) {
             id
             averageScore
             title {
