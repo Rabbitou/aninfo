@@ -46,13 +46,24 @@ const styles: StylesConfig = {
     ...css,
     outline: "none",
     background: "#737373",
-    boxShadow: "-2px 2px 3px #fff",
+    boxShadow: "0px 1px 5px #666666",
+    height: "30px",
+    overflowY: "scroll",
+    "::-webkit-scrollbar": {
+      display: "none",
+    },
   }),
   option: (css) => ({
     ...css,
     background: "#707070",
     ":hover": { background: "#888" },
     transition: ".3s",
+  }),
+  clearIndicator: (css) => ({
+    ...css,
+    position: "absolute",
+    top: 0,
+    right: "32px",
   }),
 };
 
@@ -78,6 +89,7 @@ export default function Multipleselector({
       isMulti
       options={options}
       styles={styles}
+      placeholder="Any"
     />
   );
 }

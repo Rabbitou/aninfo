@@ -12,8 +12,10 @@ export default function InputTextCustom({
       <input
         type="text"
         placeholder={place}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-44 h-[38px] rounded-sm p-2 bg-[#737373] dark:bg-white dark:text-black"
+        onChange={(e) =>
+          onChange(e.target.value === "" ? null : e.target.value)
+        }
+        className="w-44 h-[38px] focus:outline-none rounded-sm shadow-[0px_2px_5px_#666666] p-2 bg-[#737373] dark:bg-white dark:text-black"
       />
     </div>
   );

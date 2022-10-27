@@ -10,6 +10,31 @@ import { useAnimeSearch } from "../hooks/useAnimeSearch";
 import { useGenreCollection } from "../hooks/useGenreCollection";
 
 export default function Search() {
+  let yearStart = 1940;
+  const yearEnd = new Date().getFullYear() + 1;
+  const years = Array(yearEnd - yearStart + 1)
+    .fill("0")
+    .map(() => `${yearStart++}`);
+  const seasons = ["Winter", "Spring", "Summer", "Fall"];
+  const formatList = [
+    "TV",
+    "TV_SHORT",
+    "MOVIE",
+    "SPECIAL",
+    "OVA",
+    "ONA",
+    "MUSIC",
+    "MANGA",
+    "NOVEL",
+    "ONE_SHOT",
+  ];
+  const airingStatutList = [
+    "FINISHED",
+    "RELEASING",
+    "NOT_YET_RELEASED",
+    "CANCELLED",
+    "HIATUS",
+  ];
   const perPage: number = 20;
   const [searchName, setSearchName] = useState<string | null>(null);
   const [genreList, setGenreList] = useState<string[] | null>(null);
@@ -26,9 +51,11 @@ export default function Search() {
     format,
     status,
   };
+  // const searchanime = "";
   const { data: searchanime } = useAnimeSearch(searchOptions);
   // console.log(" >> ", searchOptions);
   const { data: genrelist } = useGenreCollection();
+  // const genrelist = [];
   // console.log(
   //   "genre > ",
   //   genreList?.map((g) => `"${g}"`)
@@ -63,23 +90,32 @@ export default function Search() {
         <div className="yearselector text-center w-44">
           <h3 className="m-2">Year</h3>
           <SimpleSelector
-            options={[
-              { label: "2018", value: "2018" },
-              { label: "2017", value: "2017" },
-            ]}
+            options={years
+              .map((i) => ({ label: i, value: i }))
+              .sort((a, b) => +b.label - +a.label)}
+            setOption={setSeasonYear}
           />
         </div>
         <div className="seasonselector text-center w-44">
           <h3 className="m-2">Season</h3>
-          {/* <Multipleselector /> */}
+          <SimpleSelector
+            options={seasons.map((i) => ({ label: i, value: i.toUpperCase() }))}
+            setOption={setSeason}
+          />
         </div>
         <div className="formatselector text-center w-44">
           <h3 className="m-2">Format</h3>
-          {/* <Multipleselector /> */}
+          <SimpleSelector
+            options={formatList.map((i) => ({ label: i, value: i }))}
+            setOption={setFormat}
+          />
         </div>
         <div className="airingselector text-center w-44">
           <h3 className="m-2">Airing Status</h3>
-          {/* <Multipleselector /> */}
+          <SimpleSelector
+            options={airingStatutList.map((i) => ({ label: i, value: i }))}
+            setOption={setStatus}
+          />
         </div>
       </div>
       {/* {!searchanime ? (
@@ -88,7 +124,7 @@ export default function Search() {
       <div className="animelist w-full">
         <div className="popularlist m-4 flex flex-wrap justify-center xs:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
           {!searchanime
-            ? [...new Array(6)].map(() => <LoadingAnimeSearch />)
+            ? [...new Array(6)].map((_, i) => <LoadingAnimeSearch key={i} />)
             : searchanime.map((anime) => (
                 <Animedata key={anime.id} data={anime} />
               ))}

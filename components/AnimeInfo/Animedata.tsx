@@ -11,7 +11,7 @@ export default function Animedata({ data }: { data: Anime }) {
       <div className="flex flex-col md:flex-row">
         <div className="animeimg bg-slate-200 basis-[200px] h-[350px] flex-grow-0 flex-shrink-0">
           <img
-            className="w-full h-full object-cover"
+            className="w-full h-[350px] object-cover"
             alt="anime img"
             src={data.coverImage.extraLarge}
           />

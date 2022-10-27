@@ -1,3 +1,4 @@
+import { useTheme } from "next-themes";
 import React, { MouseEventHandler, useState } from "react";
 import Select, {
   components,
@@ -15,15 +16,18 @@ import { GenreOptions } from "../../types/GenreOptions";
 
 export default function SimpleSelector({
   options,
+  setOption,
 }: {
   options: GenreOptions[];
+  setOption: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
+  const { theme } = useTheme();
   const styles: StylesConfig = {
     control: (css) => ({
       ...css,
       outline: "none",
       background: "#737373",
-      boxShadow: "-2px 2px 3px #fff",
+      boxShadow: "0px 1px 5px #666666",
       color: "red",
     }),
     singleValue: (css) => ({
@@ -39,7 +43,22 @@ export default function SimpleSelector({
     menuList: (css) => ({
       ...css,
     }),
+    input: (css) => ({
+      ...css,
+      color: "white",
+    }),
   };
 
-  return <Select closeMenuOnSelect={true} options={options} styles={styles} />;
+  return (
+    <Select
+      closeMenuOnSelect={true}
+      onChange={(e) => {
+        setOption(e === null ? null : (e as GenreOptions).value);
+      }}
+      options={options}
+      styles={styles}
+      isClearable
+      placeholder="Any"
+    />
+  );
 }
