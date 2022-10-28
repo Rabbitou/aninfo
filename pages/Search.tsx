@@ -1,8 +1,9 @@
-import { Skeleton } from "@mui/material";
+import { dividerClasses, Skeleton } from "@mui/material";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import Animedata from "../components/AnimeInfo/Animedata";
 import InputTextCustom from "../components/Input/InputTextCustom";
+import CustomSelector from "../components/Selector/CustomSelector";
 import Multipleselector from "../components/Selector/Multipleselector";
 import SimpleSelector from "../components/Selector/SimpleSelector";
 import LoadingAnimeSearch from "../components/Skeleton/LoadingAnimeSearch";
@@ -60,10 +61,11 @@ export default function Search() {
   //   "genre > ",
   //   genreList?.map((g) => `"${g}"`)
   // );
-  // if (!genrelist) return <h2>Loading...</h2>;
-  // if (!searchanime) return <h2>Loading...</h2>;
 
   const genrefiltered = genrelist?.filter((e) => e !== "Hentai");
+  // if (!genrelist) return <h2>Loading...</h2>;
+  // if (!searchanime) return <h2>Loading...</h2>;
+  // if (!genrefiltered) return <h2>Loading...</h2>;
   // console.log(searchanime);
 
   return (
@@ -76,7 +78,7 @@ export default function Search() {
         </div>
         <div className="genreselector text-center w-44">
           <h3 className="m-2">Genres</h3>
-          <Multipleselector
+          {/* <Multipleselector
             options={
               genrefiltered
                 ? genrefiltered.map((g) => {
@@ -85,7 +87,35 @@ export default function Search() {
                 : []
             }
             setOptions={setGenreList}
-          />
+          /> */}
+          {genrefiltered ? (
+            <CustomSelector
+              options={
+                genrefiltered
+                  ? genrefiltered.map((g) => {
+                      return g;
+                    })
+                  : []
+              }
+              setOptions={setGenreList}
+            />
+          ) : (
+            <div className="selector">
+              <div className="bg-red-300 w-44 h-[38px] rounded-sm flex items-center space-x-3">
+                <input
+                  className="w-32 outline-none ml-1"
+                  placeholder="Any"
+                  type="text"
+                />
+                <div className="separator h-[24px] w-[1px] bg-gray-400"></div>
+                <div className="w-[10px] h-[10px] border-[2px] rounded-sm border-r-green-700 border-b-green-700  border-l-transparent border-t-transparent rotate-45 -translate-y-[2px] -translate-x-[2px]"></div>
+              </div>
+              <div
+                id="optionlist"
+                className="optionslist h-0 transition-[height] duration-300 overflow-y-scroll mt-2 rounded-sm bg-red-900 w-44 absolute z-30"
+              ></div>
+            </div>
+          )}
         </div>
         <div className="yearselector text-center w-44">
           <h3 className="m-2">Year</h3>

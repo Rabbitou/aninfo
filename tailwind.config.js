@@ -14,6 +14,9 @@ module.exports = {
       gridTemplateColumns: {
         primary: "grid-template-cols: 180px auto;",
       },
+      transitionProperty: {
+        height: "height",
+      },
     },
   },
   plugins: [require("tailwind-scrollbar-hide")],
