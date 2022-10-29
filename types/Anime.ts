@@ -20,4 +20,5 @@ export type Anime = {
   format: string;
   status: string;
   genres: string[];
+  nextAiringEpisode: { episode: number; timeUntilAiring: number };
 };

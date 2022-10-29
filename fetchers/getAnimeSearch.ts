@@ -16,7 +16,7 @@ export const getAnimeSearch = async (
     gql`
       query {
         Page(page: 1, perPage: ${searchOptions.perPage}) {
-          media(sort: POPULARITY_DESC, isAdult: false, search: ${
+          media(sort: POPULARITY_DESC, isAdult: false, type:ANIME, search: ${
             searchOptions.searchName === null
               ? searchOptions.searchName
               : `"${searchOptions.searchName}"`
@@ -50,6 +50,10 @@ export const getAnimeSearch = async (
             format
             status
             genres
+            nextAiringEpisode {
+              episode
+              timeUntilAiring
+            }
           }
         }
       }

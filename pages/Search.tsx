@@ -77,16 +77,6 @@ export default function Search() {
         </div>
         <div className="genreselector text-center w-44">
           <h3 className="m-2">Genres</h3>
-          {/* <Multipleselector
-            options={
-              genrefiltered
-                ? genrefiltered.map((g) => {
-                    return { value: g, label: g };
-                  })
-                : []
-            }
-            setOptions={setGenreList}
-          /> */}
           {genrefiltered ? (
             <CustomSelector
               options={
@@ -99,19 +89,19 @@ export default function Search() {
               setOptions={setGenreList}
             />
           ) : (
-            <div className="selector rounded-sm overflow-hidden shadow-[0px_2px_5px_#666666]">
+            <div className="selector h-[36px] rounded-sm overflow-hidden shadow-[0px_2px_5px_#666666] outline-1 outline-gray-300 outline-double">
               <div
-                className="bg-red-300 w-44 h-[38px] rounded-sm flex items-center"
+                className="bg-[#737373] w-44 h-[38px] rounded-sm flex items-center"
                 // onClick={handleClick}
               >
                 <input
-                  className="w-32 h-full outline-none p-2"
+                  className="w-32 h-full outline-none p-2 bg-transparent"
                   placeholder="Any"
                   type="text"
                 />
                 <div className="separator h-[24px] w-[1px] bg-gray-400 mx-1.5"></div>
-                <div className="bg-blue-400 h-full w-full flex justify-center items-center">
-                  <div className="w-[10px] h-[10px] border-[2px] rounded-sm border-r-green-700 border-b-green-700  border-l-transparent border-t-transparent rotate-45 -translate-y-[2px] -translate-x-[2px]"></div>
+                <div className="group h-full w-full flex justify-center items-center">
+                  <div className="w-[10px] h-[10px] border-[2px] rounded-sm group-hover:border-r-[#999999] group-hover:border-b-[#999999]  border-l-transparent border-t-transparent transition-all rotate-45 -translate-y-[2px] -translate-x-[2px]"></div>
                 </div>
               </div>
             </div>

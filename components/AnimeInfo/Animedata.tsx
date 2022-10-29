@@ -3,8 +3,13 @@ import { Anime } from "../../types/Anime";
 import Primaryinfo from "./Primaryinfo";
 import Secondaryinfo from "./Secondaryinfo";
 import parse from "html-react-parser";
+import moment from "moment";
 
 export default function Animedata({ data }: { data: Anime }) {
+  const nextairing = moment.duration(
+    data.nextAiringEpisode?.timeUntilAiring * 1000,
+    "milliseconds"
+  );
   return (
     <div className="rounded-sm overflow-hidden bg-[#E5E5E5] dark:bg-[#5D5D5D] flex flex-col basis-[250px] flex-shrink-0 flex-grow-0 md:basis-[400px]">
       {/* <Primaryinfo /> */}
@@ -22,10 +27,22 @@ export default function Animedata({ data }: { data: Anime }) {
               {data.title.romaji || "?"}
             </h2>
             <div className="episodesinfo flex flex-col items-center">
-              <div className="episodes px-2 text-xs font-bold">
-                Episode 2 of {data.episodes || "?"} in
-              </div>
-              <div className="timeepisode text-xs"> 2 days, 5 hours</div>
+              {data.status !== "FINISHED" ? (
+                <div className="episodes px-2 text-xs font-bold">
+                  Episode {data.nextAiringEpisode?.episode || "?"} of{" "}
+                  {data.episodes || "?"} in
+                </div>
+              ) : (
+                <div className="episodes px-2 text-xs font-bold">
+                  {data.episodes || "?"} Episodes
+                </div>
+              )}
+              {data.status !== "FINISHED" && (
+                <div className="timeepisode text-xs">
+                  {" "}
+                  {nextairing.days()} days, {nextairing.hours()} hours
+                </div>
+              )}
             </div>
           </div>
           <div className="detailsstudio p-4 max-h-44 overflow-y-auto text-center text-xs flex flex-col">
