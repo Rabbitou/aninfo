@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { BaseSyntheticEvent, useEffect, useRef, useState } from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { GenreOptions } from "../../types/GenreOptions";
 
 export default function CustomSelector({
   options,
@@ -9,24 +8,86 @@ export default function CustomSelector({
   options: string[];
   setOptions: React.Dispatch<React.SetStateAction<string[] | null>>;
 }) {
-  console.log(options);
   const [optionlist, setOptionlist] = useState(options);
+  const input = useRef<HTMLDivElement>(null);
+  const optionList = useRef<HTMLDivElement>(null);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [selectedbool, setSelectedbool] = useState(true);
+
   useEffect(() => {
-    if (options.length) {
-      setOptionlist(options);
+    if (selectedOptions.length === 0) setOptions(null);
+    else setOptions(selectedOptions);
+  }, [selectedOptions]);
+
+  const handleChangeCheckBox = (e: BaseSyntheticEvent) => {
+    if (e.target.checked) {
+      setSelectedOptions((selectedOptions) => [
+        ...selectedOptions,
+        e.target.name,
+      ]);
+    } else if (!e.target.checked) {
+      // selectedOptions.filter((o) => o != e.target.name);
+      setSelectedOptions(selectedOptions.filter((o) => o !== e.target.name));
     }
+  };
+
+  const handleClickOutside = (e: any) => {
+    if (input && input.current && !input.current.contains(e.target)) {
+      if (
+        optionList &&
+        optionList.current &&
+        optionList.current.classList.contains("h-auto")
+      ) {
+        optionList.current.classList.remove("h-auto");
+        optionList.current.classList.remove("max-h-52");
+        optionList.current.classList.add("h-0");
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", (e) => handleClickOutside(e));
+
+    return () => {
+      document.removeEventListener("click", (e) => handleClickOutside(e));
+    };
   }, []);
 
   const handleClick = () => {
-    const optionslist = document.getElementById("optionlist");
-    optionslist?.classList.toggle("h-52");
-    optionslist?.classList.toggle("h-0");
+    if (optionList && optionList.current) {
+      optionList.current.classList.toggle("h-auto");
+      optionList.current.classList.toggle("max-h-52");
+      optionList.current.classList.toggle("h-0");
+    }
+    console.log(selectedOptions);
   };
+
+  const handleFocus = () => {
+    if (optionList && optionList.current) {
+      optionList.current.classList.add("h-auto");
+      optionList.current.classList.add("max-h-52");
+      optionList.current.classList.remove("h-0");
+      setSelectedbool(false);
+    }
+  };
+  const handleBlur = () => {
+    if (optionList && optionList.current) {
+      // optionList.current.classList.remove("h-auto");
+      // optionList.current.classList.remove("max-h-52");
+      // optionList.current.classList.toggle("h-0");
+      setSelectedbool(true);
+    }
+  };
+
   const handleSearchInput = (e: string) => {
-    const optionDiv = document.getElementById("optionlist");
-    if (!optionDiv?.classList.contains("h-52")) {
-      optionDiv?.classList.toggle("h-52");
-      optionDiv?.classList.toggle("h-0");
+    if (
+      optionList &&
+      optionList.current &&
+      !optionList.current.classList.contains("h-auto")
+    ) {
+      optionList.current.classList.toggle("h-auto");
+      optionList.current.classList.toggle("max-h-52");
+      optionList.current.classList.toggle("h-0");
     }
     e === ""
       ? setOptionlist(options)
@@ -35,30 +96,62 @@ export default function CustomSelector({
         );
   };
   return (
-    <div className="selector">
+    <div
+      className="selector h-[36px] rounded-sm overflow-hidden shadow-[0px_2px_5px_#666666] outline-1 outline-gray-300 outline-double"
+      id="selector"
+      ref={input}
+    >
       <div
-        className="bg-red-300 w-44 h-[38px] rounded-sm flex items-center space-x-3"
-        onClick={handleClick}
+        className="bg-[#737373] w-44 h-[38px] rounded-sm flex items-center"
+        // onClick={handleClick}
       >
         <input
-          className="w-32 outline-none ml-1"
-          placeholder="Any"
+          className="w-32 h-full outline-none p-2 bg-transparent"
+          placeholder={selectedOptions.length === 0 ? "Any" : ""}
           type="text"
           onChange={(e) => handleSearchInput(e.target.value)}
+          // onClick={handleFocus}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
         />
-        <div className="separator h-[24px] w-[1px] bg-gray-400"></div>
-        <div className="w-[10px] h-[10px] border-[2px] rounded-sm border-r-green-700 border-b-green-700  border-l-transparent border-t-transparent rotate-45 -translate-y-[2px] -translate-x-[2px]"></div>
+        {selectedbool && selectedOptions.length !== 0 && (
+          <div className="absolute flex p-[7px] rounded-sm">
+            <div
+              onClick={() =>
+                setSelectedOptions(
+                  selectedOptions.filter((o) => o !== selectedOptions[0])
+                )
+              }
+              className="bg-gradient-purple p-1 mr-1 text-xs hover:cursor-pointer rounded-md"
+            >
+              {selectedOptions[0]}
+            </div>
+            {selectedOptions.length > 1 && (
+              <div className="bg-gradient-purple p-1 text-xs rounded-md">
+                +{selectedOptions.length - 1}
+              </div>
+            )}
+          </div>
+        )}
+        <div className="separator h-[24px] w-[1px] bg-gray-400 mx-1.5"></div>
+        <div
+          className="group h-full w-full flex justify-center items-center"
+          onClick={handleClick}
+        >
+          <div className="w-[10px] h-[10px] border-[2px] rounded-sm group-hover:border-r-[#999999] group-hover:border-b-[#999999]  border-l-transparent border-t-transparent transition-all rotate-45 -translate-y-[2px] -translate-x-[2px]"></div>
+        </div>
       </div>
       <div
         id="optionlist"
-        className="optionslist h-0 transition-[height] duration-300 overflow-y-scroll mt-2 rounded-sm bg-red-900 w-44 absolute z-30"
+        ref={optionList}
+        className="optionslist h-0 transition-[height] duration-300 overflow-y-scroll mt-2 rounded-sm  w-44 absolute z-30"
       >
         {optionlist.map((value, i) => {
           return (
-            <div key={i} className="option1 flex items-center relative">
+            <div key={i} className="options flex items-center relative">
               <label
                 htmlFor={value}
-                className="text-sm w-full text-left bg-green-400 py-2 pl-3 hover:bg-green-600 transition-colors"
+                className="text-sm w-full text-left bg-[#737373] py-2 pl-3 hover:bg-[#909090] hover:text-[#FA53B2] transition-colors"
               >
                 {value}
               </label>
@@ -67,8 +160,10 @@ export default function CustomSelector({
                 type="checkbox"
                 name={value}
                 id={value}
+                onChange={(e) => handleChangeCheckBox(e)}
+                checked={!!selectedOptions.find((check) => value === check)}
               />
-              <CheckCircleIcon className="invisible peer-checked:visible !absolute !right-2 !w-[18px]  !text-blue-500" />
+              <CheckCircleIcon className="invisible peer-checked:visible !absolute !right-2 !w-[18px]  !text-[#FA53B2]" />
             </div>
           );
         })}
