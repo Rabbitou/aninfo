@@ -33,6 +33,10 @@ export const getAnimeTrendingNow = async (
             format
             status
             genres
+            nextAiringEpisode {
+              episode
+              timeUntilAiring
+            }
           }
         }
       }

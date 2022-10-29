@@ -141,7 +141,7 @@ export default function Search() {
       {/* {!searchanime ? (
         <h2>Loading...</h2>
       ) : ( */}
-      <div className="animelist w-full">
+      <section className="animelist w-full">
         <div className="popularlist m-4 flex flex-wrap justify-center xs:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
           {!searchanime
             ? [...new Array(6)].map((_, i) => <LoadingAnimeSearch key={i} />)
@@ -149,7 +149,7 @@ export default function Search() {
                 <Animedata key={anime.id} data={anime} />
               ))}
         </div>
-      </div>
+      </section>
       {/* )} */}
     </>
   );

@@ -31,6 +31,10 @@ export const getAnimePopular = async (perPage: number): Promise<Anime[]> => {
             format
             status
             genres
+            nextAiringEpisode {
+              episode
+              timeUntilAiring
+            }
           }
         }
       }

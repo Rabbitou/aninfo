@@ -14,7 +14,7 @@ export default function Animedata({ data }: { data: Anime }) {
     <div className="rounded-sm overflow-hidden bg-[#E5E5E5] dark:bg-[#5D5D5D] flex flex-col basis-[250px] flex-shrink-0 flex-grow-0 md:basis-[400px]">
       {/* <Primaryinfo /> */}
       <div className="flex flex-col md:flex-row">
-        <div className="animeimg bg-slate-200 basis-[200px] h-[350px] flex-grow-0 flex-shrink-0">
+        <div className="animeimg basis-[200px] h-[350px] flex-grow-0 flex-shrink-0">
           <img
             className="w-full h-[350px] object-cover"
             alt="anime img"
