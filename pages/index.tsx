@@ -3,6 +3,7 @@ import React from "react";
 import Animedata from "../components/AnimeInfo/Animedata";
 import TinyAnimeData from "../components/AnimeInfo/TinyAnimeData";
 import Gradient from "../components/Gradientborder/Gradient";
+import SwiperBox from "../components/Swiper/SwiperBox";
 import { endpoint } from "../endpoint/endpoint";
 import { usePopularAnime } from "../hooks/usePopularAnime";
 import { usePopularMovie } from "../hooks/usePopularMovie";
@@ -30,10 +31,11 @@ export default function Home() {
             {/* {datatrending.map((anime) => (
               <Animedata key={anime.id} data={anime} />
             ))} */}
-            {[...new Array(6)].map((_, i) => (
+            {/* {[...new Array(6)].map((_, i) => (
               <TinyAnimeData key={i} />
-            ))}
+            ))} */}
           </div>
+          <SwiperBox />
         </div>
         <div className="populardiv w-full">
           <div className="titlepopular">

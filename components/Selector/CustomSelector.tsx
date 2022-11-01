@@ -8,6 +8,7 @@ export default function CustomSelector({
   options: string[];
   setOptions: React.Dispatch<React.SetStateAction<string[] | null>>;
 }) {
+  const [searchValue, setSearchValue] = useState("");
   const [optionlist, setOptionlist] = useState(options);
   const input = useRef<HTMLDivElement>(null);
   const optionList = useRef<HTMLDivElement>(null);
@@ -18,6 +19,25 @@ export default function CustomSelector({
     if (selectedOptions.length === 0) setOptions(null);
     else setOptions(selectedOptions);
   }, [selectedOptions]);
+
+  useEffect(() => {
+    // if (
+    //   optionList &&
+    //   optionList.current &&
+    //   !optionList.current.classList.contains("h-auto")
+    // ) {
+    //   optionList.current.classList.toggle("h-auto");
+    //   optionList.current.classList.toggle("max-h-52");
+    //   optionList.current.classList.toggle("h-0");
+    // }
+    searchValue === ""
+      ? setOptionlist(options)
+      : setOptionlist(
+          options.filter(
+            (o) => o.toLowerCase().search(searchValue.toLowerCase()) != -1
+          )
+        );
+  }, [searchValue]);
 
   const handleChangeCheckBox = (e: BaseSyntheticEvent) => {
     if (e.target.checked) {
@@ -70,12 +90,18 @@ export default function CustomSelector({
       setSelectedbool(false);
     }
   };
-  const handleBlur = () => {
-    if (optionList && optionList.current) {
+  const handleBlur = (e: any) => {
+    if (
+      optionList &&
+      optionList.current &&
+      !optionList.current.contains(e.target)
+    ) {
       // optionList.current.classList.remove("h-auto");
       // optionList.current.classList.remove("max-h-52");
       // optionList.current.classList.toggle("h-0");
+      // console.log(e.target);
       setSelectedbool(true);
+      // setSearchValue("");
     }
   };
 
@@ -109,10 +135,11 @@ export default function CustomSelector({
           className="w-32 h-full outline-none p-2 bg-transparent"
           placeholder={selectedOptions.length === 0 ? "Any" : ""}
           type="text"
-          onChange={(e) => handleSearchInput(e.target.value)}
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
           // onClick={handleFocus}
           onFocus={handleFocus}
-          onBlur={handleBlur}
+          onBlur={(e) => handleBlur(e)}
         />
         {selectedbool && selectedOptions.length !== 0 && (
           <div className="absolute flex p-[7px] rounded-sm">
@@ -148,7 +175,11 @@ export default function CustomSelector({
       >
         {optionlist.map((value, i) => {
           return (
-            <div key={i} className="options flex items-center relative">
+            <div
+              key={i}
+              className="options flex items-center relative"
+              onClick={() => setSearchValue("")}
+            >
               <label
                 htmlFor={value}
                 className="text-sm w-full text-left bg-[#737373] py-2 pl-3 hover:bg-[#909090] hover:text-[#FA53B2] transition-colors"
