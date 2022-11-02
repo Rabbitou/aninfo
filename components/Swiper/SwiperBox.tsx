@@ -69,31 +69,33 @@ export default function SwiperBox() {
 
   return (
     <>
-      {/* <Swiper
-        slidesPerView={8}
+      <Swiper
+        slidesPerView="auto"
         // spaceBetween={30}
+        // initialSlide={6}
         freeMode={true}
         // pagination={{
         //   clickable: true,
         // }}
         modules={[FreeMode, Pagination]}
         className="mySwiper"
+        spaceBetween={20}
       >
         {[...new Array(20)].map((_, i) => (
-          <SwiperSlide key={i}>
+          <SwiperSlide key={i} className="!w-[200px]">
             {" "}
             <TinyAnimeData />
           </SwiperSlide>
         ))}
-      </Swiper> */}
-      <div
+      </Swiper>
+      {/* <div
         className="flex overflow-x-auto scrollbar-hide gap-4"
         ref={swiperContainer}
       >
         {[...new Array(20)].map((_, i) => (
           <TinyAnimeData key={i} />
         ))}
-      </div>
+      </div> */}
     </>
   );
 }

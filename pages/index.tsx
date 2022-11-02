@@ -46,6 +46,7 @@ export default function Home() {
             {/* {popularanime.map((anime) => (
               <Animedata key={anime.id} data={anime} />
             ))} */}
+            <SwiperBox />
           </div>
         </div>
         <div className="popularmoviediv w-full">
@@ -57,6 +58,7 @@ export default function Home() {
             {/* {popularmovie.map((anime) => (
               <Animedata key={anime.id} data={anime} />
             ))} */}
+            <SwiperBox />
           </div>
         </div>
       </section>
