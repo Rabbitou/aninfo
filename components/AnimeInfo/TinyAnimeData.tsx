@@ -1,4 +1,5 @@
 import React from "react";
+import Gradient from "../Gradientborder/Gradient";
 
 export default function TinyAnimeData() {
   return (
@@ -14,20 +15,29 @@ export default function TinyAnimeData() {
         </div>
         <div className="title text-center">Chainsaw Man</div>
       </div>
-      <div className="pl-4 w-56 absolute invisible h-full group-hover:visible z-[1] left-full overflow-hidden">
-        <div className="moreinfoDiv w-full h-full bg-gray-400 flex flex-col text-sm">
-          <div className="m-2  text-center">Title</div>
-          <div className="m-2 italic">format / ep</div>
-          <div className="max-h-[200px] overflow-y-scroll text-center m-2">
+      <div className="group-hover:pl-4 absolute w-0 h-full group-hover:w-64 z-[1] left-full overflow-hidden transition-all">
+        <div className="relative moreinfoDiv w-full h-full bg-gray-400 flex flex-col text-sm">
+          <div className="m-2  text-center">Chainsaw Man</div>
+          <div className="m-2 italic">TV / 25 episodes</div>
+          <div className="h-[200px] overflow-y-scroll text-center m-2 px-3 scrollbar-thin scrollbar-track-red-700 scrollbar-thumb-orange-300">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae
             fugit reprehenderit praesentium, iste ab maiores saepe quasi maxime
-            sed officiis!
+            sed officiis! Lorem ipsum dolor sit amet consectetur, adipisicing
+            elit. Dolorem alias, autem tenetur distinctio quibusdam natus nemo
+            iste repellendus voluptates sapiente.
           </div>
           <div className="text-center m-2">
             Action Action Action Action Action
           </div>
+          <div className="flex justify-center">
+            <Gradient>
+              <button className="py-1 px-4 bg-gray-400  hover:bg-transparent hover:text-white  transition-colors dark:hover:bg-transparent">
+                Coming Soon...
+              </button>
+            </Gradient>
+          </div>
+          <div className="border-8 top-2 right-full border-transparent border-r-gray-400  absolute"></div>
         </div>
-        <div className="w-6 h-6 bg-white border-b-2 border-l-2 top-0 right-0 border-white rotate-45 relative"></div>
       </div>
     </div>
   );

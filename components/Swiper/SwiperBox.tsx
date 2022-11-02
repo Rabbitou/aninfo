@@ -87,7 +87,7 @@ export default function SwiperBox() {
         ))}
       </Swiper> */}
       <div
-        className="flex overflow-x-auto scrollbar-hide bg-red-400 gap-4"
+        className="flex overflow-x-auto scrollbar-hide gap-4"
         ref={swiperContainer}
       >
         {[...new Array(20)].map((_, i) => (
