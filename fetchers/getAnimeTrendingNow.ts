@@ -2,10 +2,11 @@ import request, { gql } from "graphql-request";
 import React from "react";
 import { endpoint } from "../endpoint/endpoint";
 import { Anime } from "../types/Anime";
+import { TinyAnime } from "../types/TinyAnime";
 
 export const getAnimeTrendingNow = async (
   perPage: number
-): Promise<Anime[]> => {
+): Promise<TinyAnime[]> => {
   const {
     Page: { media },
   } = await request(
@@ -15,7 +16,6 @@ export const getAnimeTrendingNow = async (
         Page(page: 1, perPage: ${perPage}) {
           media(sort: TRENDING_DESC, isAdult: false, type: ANIME, format: TV) {
             id
-            averageScore
             title {
               romaji
             }
@@ -23,20 +23,9 @@ export const getAnimeTrendingNow = async (
               extraLarge
             }
             episodes
-            duration
             description
-            studios(isMain: true) {
-              nodes {
-                name
-              }
-            }
             format
-            status
             genres
-            nextAiringEpisode {
-              episode
-              timeUntilAiring
-            }
           }
         }
       }

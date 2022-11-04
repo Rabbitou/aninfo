@@ -2,8 +2,11 @@ import request, { gql } from "graphql-request";
 import React from "react";
 import { endpoint } from "../endpoint/endpoint";
 import { Anime } from "../types/Anime";
+import { TinyAnime } from "../types/TinyAnime";
 
-export const getMoviePopular = async (perPage: number): Promise<Anime[]> => {
+export const getMoviePopular = async (
+  perPage: number
+): Promise<TinyAnime[]> => {
   const {
     Page: { media },
   } = await request(
@@ -13,7 +16,6 @@ export const getMoviePopular = async (perPage: number): Promise<Anime[]> => {
         Page(page: 1, perPage: ${perPage}) {
           media(sort: POPULARITY_DESC, isAdult: false, type: ANIME, format: MOVIE) {
             id
-            averageScore
             title {
               romaji
             }
@@ -21,15 +23,8 @@ export const getMoviePopular = async (perPage: number): Promise<Anime[]> => {
               extraLarge
             }
             episodes
-            duration
             description
-            studios(isMain: true) {
-              nodes {
-                name
-              }
-            }
             format
-            status
             genres
           }
         }

@@ -79,7 +79,6 @@ export default function CustomSelector({
       optionList.current.classList.toggle("max-h-52");
       optionList.current.classList.toggle("h-0");
     }
-    console.log(selectedOptions);
   };
 
   const handleFocus = () => {

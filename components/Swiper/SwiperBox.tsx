@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,7 +13,7 @@ import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper";
 import TinyAnimeData from "../AnimeInfo/TinyAnimeData";
 
-export default function SwiperBox() {
+export default function SwiperBox({ children }: { children: ReactNode }) {
   const swiperContainer = useRef<HTMLDivElement>(null);
   const [startScroll, setStartScroll] = useState(0);
   const [previousmovement, setPreviousmovement] = useState(0);
@@ -81,12 +81,7 @@ export default function SwiperBox() {
         className="mySwiper"
         spaceBetween={20}
       >
-        {[...new Array(20)].map((_, i) => (
-          <SwiperSlide key={i} className="!w-[200px]">
-            {" "}
-            <TinyAnimeData />
-          </SwiperSlide>
-        ))}
+        {children}
       </Swiper>
       {/* <div
         className="flex overflow-x-auto scrollbar-hide gap-4"

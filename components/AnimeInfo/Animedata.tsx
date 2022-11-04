@@ -46,8 +46,8 @@ export default function Animedata({ data }: { data: Anime }) {
             </div>
           </div>
           <div className="detailsstudio p-4 max-h-44 overflow-y-auto text-center text-xs flex flex-col">
-            <span className="">{parse(data?.description || "")}</span>
-            <span className="">
+            <p>{parse(data?.description || "")}</p>
+            <span>
               Studio:{" "}
               {data.studios.nodes.length > 0 ? data.studios.nodes[0].name : "?"}
             </span>

@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
+import { TinyAnime } from "../../types/TinyAnime";
 import Gradient from "../Gradientborder/Gradient";
+import parse from "html-react-parser";
+import Link from "next/link";
 
-export default function TinyAnimeData() {
+export default function TinyAnimeData({ data }: { data: TinyAnime }) {
   const [positionBox, setPositionBox] = useState(0);
   const [windowSize, setWindowSize] = useState(0);
   const tinyAnime = useRef<HTMLDivElement>(null);
@@ -23,7 +26,7 @@ export default function TinyAnimeData() {
     const handleScroll = () => {
       if (tinyAnime && tinyAnime.current) {
         setPositionBox(tinyAnime.current.getBoundingClientRect().left);
-        console.log(tinyAnime.current.getBoundingClientRect().left);
+        // console.log(tinyAnime.current.getBoundingClientRect().left);
       }
     };
 
@@ -42,51 +45,57 @@ export default function TinyAnimeData() {
   }, [tinyAnime]);
 
   return (
-    <div className="flex group relative" ref={tinyAnime}>
+    <div className="group relative" ref={tinyAnime}>
       <div className="containeranime">
-        <div className="animeimg bg-slate-200 w-[200px] h-[350px] flex-grow-0 flex-shrink-0">
+        <div className="animeimg w-[170px] h-[260px] flex-grow-0 flex-shrink-0">
           <img
-            className="w-full h-[350px] object-cover"
+            className="w-full h-[260px] object-cover"
             draggable={false}
             alt="CoverImg"
-            src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx127230-FlochcFsyoF4.png"
+            src={data.coverImage.extraLarge}
           />
         </div>
-        <div className="title text-center">Chainsaw Man</div>
+        <div className="title text-center truncate py-1">
+          {data.title.romaji || "?"}
+        </div>
       </div>
       <div
-        className={` absolute w-0 h-full group-hover:w-64 z-[1] ${
+        className={` absolute w-0 top-0 h-full group-hover:w-full md:group-hover:w-64 z-[1] ${
           windowSize / 2 > positionBox
-            ? "left-full group-hover:pl-4"
-            : "right-full group-hover:pr-4"
+            ? "md:left-full group-hover:pl-3"
+            : "md:right-full group-hover:pr-3"
         } overflow-hidden transition-all`}
       >
-        <div className="relative moreinfoDiv w-full h-full bg-gray-400 flex flex-col text-sm">
-          <div className="m-2  text-center">Chainsaw Man</div>
-          <div className="ml-5 italic">TV / 25 episodes</div>
-          <div className="h-[180px] overflow-y-scroll text-center m-2 px-3 scrollbar-thin scrollbar-track-gray-500 scrollbar-thumb-gray-600">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae
-            fugit reprehenderit praesentium, iste ab maiores saepe quasi maxime
-            sed officiis! Lorem ipsum dolor sit amet consectetur, adipisicing
-            elit. Dolorem alias, autem tenetur distinctio quibusdam natus nemo
-            iste repellendus voluptates sapiente.
+        <div className="relative moreinfoDiv w-full h-full bg-gray-300 dark:bg-white flex flex-col text-sm p-2">
+          <div className="font-bold text-black text-center mb-2">
+            {data.title.romaji || "?"}
           </div>
-          <div className="text-center m-2 my-4">
-            Psychological Psychological Psychological Psychological
-            Psychological
+          <div className="text-center italic text-black text-xs mb-1">
+            {data.format || "? format ?"}
+            {data.episodes ? ` / ${data.episodes} episodes` : ""}
           </div>
-          <div className="flex justify-center mb-4">
-            <Gradient>
-              <button className="py-1 px-4 bg-gray-400  hover:bg-transparent hover:text-white transition-colors dark:hover:bg-transparent">
-                Coming Soon...
-              </button>
-            </Gradient>
+          <p className="h-[170px] overflow-y-scroll text-center px-3 scrollbar-thin text-xs scrollbar-track-gray-500 scrollbar-thumb-gray-600 text-gray-500">
+            {parse(data?.description || "")}
+          </p>
+          <div className="text-center my-1 text-black text-xs text-[10px] px-2">
+            {data.genres.map((g) => `${g} `)}
+          </div>
+          <div className="flex justify-center">
+            <Link href={`anime/${data.id}`}>
+              <a>
+                <Gradient>
+                  <button className="py-1 px-4  hover:text-white transition-colors text-white">
+                    Coming Soon...
+                  </button>
+                </Gradient>
+              </a>
+            </Link>
           </div>
           <div
-            className={`border-8 top-2 border-transparent ${
+            className={`border-8 top-2 hidden md:block border-transparent ${
               windowSize / 2 > positionBox
-                ? "right-full border-r-gray-400"
-                : "left-full border-l-gray-400"
+                ? "right-full dark:border-r-white border-r-gray-300"
+                : "left-full dark:border-l-white border-l-gray-300"
             }  absolute`}
           ></div>
         </div>
