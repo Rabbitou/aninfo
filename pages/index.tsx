@@ -91,6 +91,7 @@ export default function Home() {
           </SwiperBox>
         </div>
       </section>
+      <footer className="py-6"></footer>
     </>
   );
 }

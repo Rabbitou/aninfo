@@ -10,3 +10,9 @@
     @apply bg-gradient-to-r from-[#DA22FF] to-[#9733EE];
   }
 }
+
+@layer base {
+  body {
+    @apply dark:bg-gray-900;
+  }
+}
