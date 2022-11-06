@@ -45,7 +45,7 @@ export default function SideBarDetails({ data }: { data: AnimeDetails }) {
   );
   return (
     <div className="">
-      <div className="w-auto md:w-52 p-6 bg-gray-700 rounded-sm flex flex-wrap md:flex-col gap-10 md:gap-0">
+      <div className="w-auto md:w-52 p-6 bg-gray-700 rounded-sm flex flex-wrap md:flex-col gap-6 md:gap-0">
         {data.status !== "FINISHED" && (
           <Info title="airing">
             <p className="bg-gradient-purple bg-clip-text text-transparent">

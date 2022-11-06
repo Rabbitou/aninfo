@@ -60,10 +60,10 @@ export default function TinyAnimeData({ data }: { data: TinyAnime }) {
         </div>
       </div>
       <div
-        className={` absolute w-0 top-0 h-full group-hover:w-full md:group-hover:w-64 z-[1] ${
+        className={` absolute w-0 top-0 h-full group-hover:w-full md:group-hover:w-[215px] z-[1] ${
           windowSize / 2 > positionBox
-            ? "md:left-full group-hover:pl-3"
-            : "md:right-full group-hover:pr-3"
+            ? "md:left-full md:group-hover:pl-3"
+            : "md:right-full md:group-hover:pr-3"
         } overflow-hidden transition-all`}
       >
         <div className="relative moreinfoDiv w-full h-full bg-gray-300 dark:bg-white flex flex-col text-sm p-2">
