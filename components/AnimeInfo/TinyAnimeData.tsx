@@ -81,7 +81,7 @@ export default function TinyAnimeData({ data }: { data: TinyAnime }) {
             {data.genres.map((g) => `${g} `)}
           </div>
           <div className="flex justify-center">
-            <Link href={`anime/${data.id}`}>
+            <Link href={`/anime/${data.id}`}>
               <a>
                 <Gradient>
                   <button className="py-1 px-4  hover:text-white transition-colors text-white">

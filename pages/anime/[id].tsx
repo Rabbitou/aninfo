@@ -22,7 +22,7 @@ export default function AnimePage() {
         <div className="banner w-full h-[400px] absolute top-0 left-0 opacity-40">
           <img
             className="w-full h-full object-cover"
-            src={data.bannerImage}
+            src={data.bannerImage || data.coverImage.extraLarge}
             alt=""
           />
         </div>
