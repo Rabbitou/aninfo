@@ -19,10 +19,10 @@ export default function SwitchMode() {
     >
       <div
         className={`flex mx-1 bg-gray-500 items-center justify-center w-7 h-7 rounded-2xl transition-all ${
-          theme === "dark" ? "translate-x-full" : "translate-x-0"
+          currentTheme === "dark" ? "translate-x-full" : "translate-x-0"
         }`}
       >
-        {theme !== "dark" ? (
+        {currentTheme !== "dark" ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="20"
