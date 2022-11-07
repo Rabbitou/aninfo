@@ -4,6 +4,7 @@ import Primaryinfo from "./Primaryinfo";
 import Secondaryinfo from "./Secondaryinfo";
 import parse from "html-react-parser";
 import moment from "moment";
+import Link from "next/link";
 
 export default function Animedata({ data }: { data: Anime }) {
   const nextairing = moment.duration(
@@ -21,11 +22,13 @@ export default function Animedata({ data }: { data: Anime }) {
             src={data.coverImage.extraLarge}
           />
         </div>
-        <div className="synopsis flex text-white  flex-col items-center justify-center bg-blue-400 dark:bg-transparent h-[250px] md:h-full">
+        <div className="synopsis flex   flex-col items-center justify-center bg-slate-300 dark:bg-transparent h-[250px] md:h-full">
           <div className="titleepisodes flex flex-col items-center space-x-2">
-            <h2 className="animetitle p-2 text-center">
-              {data.title.romaji || "?"}
-            </h2>
+            <Link href={`/anime/${data.id}`}>
+              <a className="animetitle p-2 text-center hover:text-blue-400 transition-all">
+                {data.title.romaji || "?"}
+              </a>
+            </Link>
             <div className="episodesinfo flex flex-col items-center">
               {data.status !== "FINISHED" ? (
                 <div className="episodes px-2 text-xs font-bold">

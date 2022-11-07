@@ -89,6 +89,7 @@ export default function CustomSelector({
       setSelectedbool(false);
     }
   };
+
   const handleBlur = (e: any) => {
     if (
       optionList &&

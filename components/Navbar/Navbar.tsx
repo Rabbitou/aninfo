@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Gradient from "../Gradientborder/Gradient";
+import SearchBar from "./SearchBar";
 import SwitchMode from "./SwitchMode";
 
 export default function Navbar() {
@@ -9,25 +10,22 @@ export default function Navbar() {
       <div className="logo bg-gradient-purple bg-clip-text text-transparent text-xl">
         <Link href="/">Aninfo</Link>
       </div>
-      <ul className="home flex items-center space-x-8">
-        {/* <Gradient>
-          <button
-            className="btn-default"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          >
-            Dark
-          </button>
-        </Gradient> */}
-        <li>
-          <SwitchMode />
-        </li>
-        <li>
-          <Link href="Search">Anime List</Link>
-        </li>
-        <li>
-          <button>Coming Soon...</button>
-        </li>
-      </ul>
+      <div className="w-1/3 relative items-center">
+        <SearchBar />
+      </div>
+      <div>
+        <div className="home flex items-center space-x-4 md:space-x-8">
+          <div>
+            <SwitchMode />
+          </div>
+          <div>
+            <Link href="/Search">Anime List</Link>
+          </div>
+          <div>
+            <button>Coming Soon...</button>
+          </div>
+        </div>
+      </div>
     </nav>
   );
 }

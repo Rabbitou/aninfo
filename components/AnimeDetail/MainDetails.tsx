@@ -1,6 +1,6 @@
 import React from "react";
 import { SwiperSlide } from "swiper/react";
-import { AnimeDetails } from "../../types/AnimeDetails";
+import { AnimeDetails, Characters, Staff } from "../../types/AnimeDetails";
 import TinyAnimeData from "../AnimeInfo/TinyAnimeData";
 import CharacStaffSkeleton from "../Skeleton/CharacStaffSkeleton";
 import TinyAnimeSkeleton from "../Skeleton/TinyAnimeSkeleton";
@@ -64,17 +64,25 @@ function Overview({ data }: { data: AnimeDetails }) {
     </div>
   );
 }
-function Characters() {
+function Characters({ data }: { data: Characters[] }) {
   return (
-    <div>
-      <h1>Coming Soon...</h1>
+    <div className="characters">
+      <div className="flex flex-wrap gap-4 mt-6">
+        {data.map((c, i) => (
+          <CharactersCard key={i} data={c} />
+        ))}
+      </div>
     </div>
   );
 }
-function Staff() {
+function Staff({ data }: { data: Staff[] }) {
   return (
-    <div>
-      <h1>Coming Soon...</h1>
+    <div className="staff">
+      <div className="flex flex-wrap gap-4 mt-6">
+        {data.map((s, i) => (
+          <StaffCard key={i} data={s} />
+        ))}
+      </div>
     </div>
   );
 }
@@ -90,9 +98,9 @@ export default function MainDetails({
     case 0:
       return <Overview data={data} />;
     case 1:
-      return <Characters />;
+      return <Characters data={data.characters.nodes} />;
     case 2:
-      return <Staff />;
+      return <Staff data={data.staff.nodes} />;
     default:
       break;
   }

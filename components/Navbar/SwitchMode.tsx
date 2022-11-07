@@ -14,7 +14,7 @@ export default function SwitchMode() {
 
   return (
     <div
-      className={`flex bg-gray-300 w-16 h-8 rounded-2xl items-center`}
+      className={`flex bg-gray-300 w-16 h-8 rounded-2xl items-center cursor-pointer`}
       onClick={handleChangeTheme}
     >
       <div

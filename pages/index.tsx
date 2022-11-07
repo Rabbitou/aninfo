@@ -2,6 +2,7 @@ import Head from "next/head";
 import React from "react";
 import { SwiperSlide } from "swiper/react";
 import Animedata from "../components/AnimeInfo/Animedata";
+import SearchCardAnime from "../components/AnimeInfo/SearchCardAnime";
 import TinyAnimeData from "../components/AnimeInfo/TinyAnimeData";
 import Gradient from "../components/Gradientborder/Gradient";
 import TinyAnimeSkeleton from "../components/Skeleton/TinyAnimeSkeleton";
@@ -27,6 +28,7 @@ export default function Home() {
         <title>Home</title>
       </Head>
       <section className="flex flex-col">
+        {/* <SearchCardAnime /> */}
         <div className="trendingdiv w-full">
           <div className="titletrending mb-6">
             <h2 className="p-4 capitalize">trending now</h2>

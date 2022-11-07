@@ -11,7 +11,7 @@ function ExternalLinks({ link }: { link: ExternalLinksType }) {
       onMouseLeave={(e: any) =>
         (e.target.style.backgroundColor = "rgb(55 65 81 / 1)")
       }
-      className={`flex no-underline rounded-sm text-sm gap-3 md:mb-1 bg-gray-700 items-center transition-all p-[2px] w-[48%] md:w-52`}
+      className={`flex no-underline rounded-sm text-sm gap-3 md:mb-1 bg-slate-300 dark:bg-gray-700 items-center transition-all p-[2px] w-[48%] md:w-52`}
     >
       <div
         style={{ backgroundColor: link.color || "#505050" }}
@@ -33,7 +33,7 @@ function Info({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div className="flex flex-col pb-[14px]">
       <h5 className="capitalize font-semibold text-sm mb-1">{title}</h5>
-      <div className="text-xs text-gray-400">{children}</div>
+      <div className="text-xs text-gray-800 dark:text-gray-400">{children}</div>
     </div>
   );
 }
@@ -45,7 +45,7 @@ export default function SideBarDetails({ data }: { data: AnimeDetails }) {
   );
   return (
     <div className="">
-      <div className="w-auto md:w-52 p-6 bg-gray-700 rounded-sm flex flex-wrap md:flex-col gap-6 md:gap-0">
+      <div className="w-auto md:w-52 p-6 bg-slate-300 dark:bg-gray-700 rounded-sm flex flex-wrap md:flex-col gap-6 md:gap-0">
         {data.status !== "FINISHED" && (
           <Info title="airing">
             <p className="bg-gradient-purple bg-clip-text text-transparent">

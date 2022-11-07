@@ -19,7 +19,7 @@ export default function AnimePage() {
   return (
     <section className="max-w-[1400px] w-full mx-auto">
       <div className="header">
-        <div className="banner w-full h-[400px] absolute top-0 left-0 opacity-40">
+        <div className="banner w-full h-[400px] absolute top-0 left-0 opacity-50 dark:opacity-40">
           <img
             className="w-full h-full object-cover"
             src={data.bannerImage || data.coverImage.extraLarge}

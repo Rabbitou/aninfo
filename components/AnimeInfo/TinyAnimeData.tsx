@@ -47,7 +47,7 @@ export default function TinyAnimeData({ data }: { data: TinyAnime }) {
   return (
     <div className="group relative" ref={tinyAnime}>
       <div className="containeranime w-[170px]">
-        <div className="animeimg w-[170px] h-[260px] flex-grow-0 flex-shrink-0">
+        <div className="animeimg w-[170px] h-[260px] flex-grow-0 flex-shrink-0 shadow-md rounded-sm overflow-hidden">
           <img
             className="w-full h-[260px] object-cover"
             draggable={false}
