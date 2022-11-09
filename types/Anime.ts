@@ -22,3 +22,11 @@ export type Anime = {
   genres: string[];
   nextAiringEpisode: { episode: number; timeUntilAiring: number };
 };
+
+export type Page = {
+  pageInfo: {
+    currentPage: number;
+    hasNextPage: boolean;
+  };
+  media: Anime[];
+};

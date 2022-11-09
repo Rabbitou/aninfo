@@ -2,20 +2,23 @@ import { formControlClasses } from "@mui/material";
 import request, { gql } from "graphql-request";
 import React from "react";
 import { endpoint } from "../endpoint/endpoint";
-import { Anime } from "../types/Anime";
+import { Anime, Page } from "../types/Anime";
 import { GenreOptions } from "../types/GenreOptions";
 import { AnimeSearchProps } from "../types/interfaces/AnimeSearch";
 
 export const getAnimeSearch = async (
-  searchOptions: AnimeSearchProps
-): Promise<Anime[]> => {
-  const {
-    Page: { media },
-  } = await request(
+  searchOptions: AnimeSearchProps,
+  pageParam: number
+): Promise<Page> => {
+  const { Page } = await request(
     endpoint,
     gql`
       query {
-        Page(page: 1, perPage: ${searchOptions.perPage}) {
+        Page(page: ${pageParam}, perPage: ${searchOptions.perPage}) {
+          pageInfo{
+            currentPage
+            hasNextPage
+          }
           media(sort: POPULARITY_DESC, isAdult: false, type:ANIME, search: ${
             searchOptions.searchName === null
               ? searchOptions.searchName
@@ -59,5 +62,5 @@ export const getAnimeSearch = async (
       }
     `
   );
-  return media;
+  return Page;
 };

@@ -46,7 +46,7 @@ export default function SideBarDetails({ data }: { data: AnimeDetails }) {
   return (
     <div className="">
       <div className="w-auto md:w-52 p-6 bg-slate-300 dark:bg-gray-700 rounded-sm flex flex-wrap md:flex-col gap-6 md:gap-0">
-        {data.status !== "FINISHED" && (
+        {data.status !== "FINISHED" && data.format !== "MANGA" && (
           <Info title="airing">
             <p className="bg-gradient-purple bg-clip-text text-transparent">
               Ep {data.nextAiringEpisode?.episode || "?"} : {nextairing.days()}d{" "}
@@ -57,9 +57,11 @@ export default function SideBarDetails({ data }: { data: AnimeDetails }) {
         <Info title="Format">
           <p>{data.format}</p>
         </Info>
-        <Info title="Episode Duration">
-          <p>{data.duration} mins</p>
-        </Info>
+        {data.format !== "MANGA" && (
+          <Info title="Episode Duration">
+            <p>{data.duration} mins</p>
+          </Info>
+        )}
         <Info title="Status">
           <p className="capitalize">{data.status.toLowerCase()}</p>
         </Info>
@@ -70,19 +72,23 @@ export default function SideBarDetails({ data }: { data: AnimeDetails }) {
             ).format("MMM DD, YYYY")}
           </p>
         </Info>
-        <Info title="Season">
-          <p className="capitalize">{`${data.season.toLowerCase()} ${
-            data.seasonYear
-          }`}</p>
-        </Info>
+        {data.format !== "MANGA" && (
+          <Info title="Season">
+            <p className="capitalize">{`${data.season.toLowerCase()} ${
+              data.seasonYear
+            }`}</p>
+          </Info>
+        )}
         <Info title="Rating">
           <p>{data.averageScore / 10}</p>
         </Info>
-        <Info title="Studios">
-          {data.studios.nodes.map((n, i) => (
-            <p key={i}>{n.name}</p>
-          ))}
-        </Info>
+        {data.format !== "MANGA" && (
+          <Info title="Studios">
+            {data.studios.nodes.map((n, i) => (
+              <p key={i}>{n.name}</p>
+            ))}
+          </Info>
+        )}
         <Info title="Source">
           <p className="capitalize">{data.source.toLowerCase()}</p>
         </Info>

@@ -15,7 +15,7 @@ function Overview({ data }: { data: AnimeDetails }) {
         <h3 className="font-semibold text-lg">Relations</h3>
         <hr className="w-[50%]" />
         <div className="flex flex-wrap gap-6 mt-6">
-          {data.relations?.nodes.slice(0, 20).map((anime, i) => (
+          {data.relations?.nodes.map((anime, i) => (
             <TinyAnimeData key={i} data={anime} />
           ))}
         </div>
@@ -55,7 +55,7 @@ function Overview({ data }: { data: AnimeDetails }) {
         <hr className="w-[50%] mb-6" />
         <div className="flex flex-wrap gap-6">
           {data.recommendations.nodes
-            .slice(0, 10)
+            .slice(0, 6)
             .map(({ mediaRecommendation }, i) => (
               <TinyAnimeData key={i} data={mediaRecommendation} />
             ))}
@@ -68,9 +68,9 @@ function Characters({ data }: { data: Characters[] }) {
   return (
     <div className="characters">
       <div className="flex flex-wrap gap-4 mt-6">
-        {data.map((c, i) => (
-          <CharactersCard key={i} data={c} />
-        ))}
+        {data
+          ? data.map((c, i) => <CharactersCard key={i} data={c} />)
+          : [...new Array(8)].map((_, i) => <CharacStaffSkeleton key={i} />)}
       </div>
     </div>
   );
@@ -79,9 +79,9 @@ function Staff({ data }: { data: Staff[] }) {
   return (
     <div className="staff">
       <div className="flex flex-wrap gap-4 mt-6">
-        {data.map((s, i) => (
-          <StaffCard key={i} data={s} />
-        ))}
+        {data
+          ? data.map((s, i) => <StaffCard key={i} data={s} />)
+          : [...new Array(8).map((_, i) => <CharacStaffSkeleton key={i} />)]}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 import { SwiperSlide } from "swiper/react";
 import Animedata from "../components/AnimeInfo/Animedata";
 import SearchCardAnime from "../components/AnimeInfo/SearchCardAnime";
@@ -18,6 +18,9 @@ export default function Home() {
   const { data: popularanime } = usePopularAnime(20);
   // const { data: popularanime } = "";
   const { data: popularmovie } = usePopularMovie(20);
+  const [changeMovetr, setChangeMovetr] = useState(0);
+  const [changeMovepo, setChangeMovepo] = useState(0);
+  const [changeMovemov, setChangeMovemov] = useState(0);
   // const { data: popularmovie } = "";
   // if (!datatrending) return <h2>Loading...</h2>;
   // if (!popularanime) return <h2>Loading...</h2>;
@@ -34,12 +37,12 @@ export default function Home() {
             <h2 className="p-4 capitalize">trending now</h2>
             <hr className="mx-4" />
           </div>
-          <SwiperBox>
+          <SwiperBox setChangeMove={setChangeMovetr}>
             {datatrending
               ? datatrending.map((anime, i) => (
                   <SwiperSlide key={i} className="!w-[170px]">
                     {" "}
-                    <TinyAnimeData data={anime} />
+                    <TinyAnimeData data={anime} activeSlide={changeMovetr} />
                   </SwiperSlide>
                 ))
               : [...new Array(10)].map((_, i) => (
@@ -55,12 +58,12 @@ export default function Home() {
             <h2 className="p-4 capitalize">popular anime</h2>
             <hr className="mx-4" />
           </div>
-          <SwiperBox>
+          <SwiperBox setChangeMove={setChangeMovepo}>
             {popularanime
               ? popularanime.map((anime, i) => (
                   <SwiperSlide key={i} className="!w-[170px]">
                     {" "}
-                    <TinyAnimeData data={anime} />
+                    <TinyAnimeData data={anime} activeSlide={changeMovepo} />
                   </SwiperSlide>
                 ))
               : [...new Array(10)].map((_, i) => (
@@ -76,12 +79,12 @@ export default function Home() {
             <h2 className="p-4 capitalize">popular movies</h2>
             <hr className="mx-4" />
           </div>
-          <SwiperBox>
+          <SwiperBox setChangeMove={setChangeMovemov}>
             {popularmovie
               ? popularmovie.map((anime, i) => (
                   <SwiperSlide key={i} className="!w-[170px]">
                     {" "}
-                    <TinyAnimeData data={anime} />
+                    <TinyAnimeData data={anime} activeSlide={changeMovemov} />
                   </SwiperSlide>
                 ))
               : [...new Array(10)].map((_, i) => (

@@ -1,6 +1,6 @@
 import { dividerClasses, Skeleton } from "@mui/material";
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Animedata from "../components/AnimeInfo/Animedata";
 import InputTextCustom from "../components/Input/InputTextCustom";
 import CustomSelector from "../components/Selector/CustomSelector";
@@ -36,7 +36,7 @@ export default function Search() {
     "CANCELLED",
     "HIATUS",
   ];
-  const perPage: number = 20;
+  const perPage: number = 50;
   const [searchName, setSearchName] = useState<string | null>(null);
   const [genreList, setGenreList] = useState<string[] | null>(null);
   const [seasonYear, setSeasonYear] = useState<string | null>(null);
@@ -53,14 +53,37 @@ export default function Search() {
     status,
   };
 
-  const { data: searchanime } = useAnimeSearch(searchOptions);
+  const {
+    data: searchanime,
+    fetchNextPage,
+    isFetching,
+  } = useAnimeSearch(searchOptions);
   const { data: genrelist } = useGenreCollection();
 
   const genrefiltered = genrelist?.filter((e) => e !== "Hentai");
+  const arraySkeleton = [...new Array(10)].map((_, i) => (
+    <LoadingAnimeSearch key={i} />
+  ));
+
+  useEffect(() => {
+    const handleScroll = (e: any) => {
+      // console.log(
+      //   e.currentTarget.document.body.clientHeight,
+      //   e.currentTarget.scrollY
+      // );
+    };
+    window.addEventListener("scroll", (e) => handleScroll(e));
+
+    return () => {
+      window.removeEventListener("scroll", (e) => handleScroll(e));
+    };
+  }, []);
 
   return (
     <>
-      <Head>Search</Head>
+      <Head>
+        <title>Anime List</title>
+      </Head>
       <div className="searchtools flex flex-wrap m-10 gap-4 justify-center">
         <div className="searchdiv text-center">
           <h3 className="m-2">Search</h3>
@@ -135,10 +158,23 @@ export default function Search() {
       <section className="animelist w-full">
         <div className="popularlist m-4 flex flex-wrap justify-center xs:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
           {!searchanime
-            ? [...new Array(6)].map((_, i) => <LoadingAnimeSearch key={i} />)
-            : searchanime.map((anime) => (
-                <Animedata key={anime.id} data={anime} />
+            ? arraySkeleton
+            : searchanime.pages.map((page, index) => (
+                <Fragment key={index}>
+                  {page.media.map((anime) => (
+                    <Animedata key={anime.id} data={anime} />
+                  ))}
+                </Fragment>
               ))}
+          {isFetching && arraySkeleton}
+        </div>
+        <div className="flex justify-center w-full p-6">
+          <button
+            className="bg-gradient-purple btn-default"
+            onClick={() => fetchNextPage()}
+          >
+            Load More (tmp)
+          </button>
         </div>
       </section>
       {/* )} */}

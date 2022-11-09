@@ -13,7 +13,13 @@ import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper";
 import TinyAnimeData from "../AnimeInfo/TinyAnimeData";
 
-export default function SwiperBox({ children }: { children: ReactNode }) {
+export default function SwiperBox({
+  children,
+  setChangeMove,
+}: {
+  children: ReactNode;
+  setChangeMove: React.Dispatch<React.SetStateAction<number>>;
+}) {
   const swiperContainer = useRef<HTMLDivElement>(null);
   const [startScroll, setStartScroll] = useState(0);
   const [previousmovement, setPreviousmovement] = useState(0);
@@ -80,6 +86,8 @@ export default function SwiperBox({ children }: { children: ReactNode }) {
         modules={[FreeMode, Pagination]}
         className="mySwiper"
         spaceBetween={20}
+        // onSliderMove={(s) => setChangeMove(s.activeIndex)}
+        onTransitionEnd={(s) => setChangeMove(s.activeIndex)}
       >
         {children}
       </Swiper>

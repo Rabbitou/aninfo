@@ -4,7 +4,13 @@ import Gradient from "../Gradientborder/Gradient";
 import parse from "html-react-parser";
 import Link from "next/link";
 
-export default function TinyAnimeData({ data }: { data: TinyAnime }) {
+export default function TinyAnimeData({
+  data,
+  activeSlide,
+}: {
+  data: TinyAnime;
+  activeSlide?: number;
+}) {
   const [positionBox, setPositionBox] = useState(0);
   const [windowSize, setWindowSize] = useState(0);
   const tinyAnime = useRef<HTMLDivElement>(null);
@@ -38,7 +44,7 @@ export default function TinyAnimeData({ data }: { data: TinyAnime }) {
       );
       window.removeEventListener("resize", handleResize);
     };
-  }, [tinyAnime]);
+  }, [tinyAnime, activeSlide]);
 
   return (
     <div className="group relative" ref={tinyAnime}>
