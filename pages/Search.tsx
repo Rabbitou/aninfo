@@ -52,20 +52,11 @@ export default function Search() {
     format,
     status,
   };
-  // const searchanime = "";
+
   const { data: searchanime } = useAnimeSearch(searchOptions);
   const { data: genrelist } = useGenreCollection();
-  // const genrelist = [];
-  // console.log(
-  //   "genre > ",
-  //   genreList?.map((g) => `"${g}"`)
-  // );
 
   const genrefiltered = genrelist?.filter((e) => e !== "Hentai");
-  // if (!genrelist) return <h2>Loading...</h2>;
-  // if (!searchanime) return <h2>Loading...</h2>;
-  // if (!genrefiltered) return <h2>Loading...</h2>;
-  // console.log(searchanime);
 
   return (
     <>

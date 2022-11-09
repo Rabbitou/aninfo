@@ -96,12 +96,7 @@ export default function CustomSelector({
       optionList.current &&
       !optionList.current.contains(e.target)
     ) {
-      // optionList.current.classList.remove("h-auto");
-      // optionList.current.classList.remove("max-h-52");
-      // optionList.current.classList.toggle("h-0");
-      // console.log(e.target);
       setSelectedbool(true);
-      // setSearchValue("");
     }
   };
 

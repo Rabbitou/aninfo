@@ -18,15 +18,11 @@ export default function TinyAnimeData({ data }: { data: TinyAnime }) {
       if (tinyAnime && tinyAnime.current)
         setPositionBox(tinyAnime.current.getBoundingClientRect().left);
     };
-    // console.log(
-    //   tinyAnime?.current?.parentElement?.parentElement?.parentElement
-    // );
     window.addEventListener("resize", handleResize);
 
     const handleScroll = () => {
       if (tinyAnime && tinyAnime.current) {
         setPositionBox(tinyAnime.current.getBoundingClientRect().left);
-        // console.log(tinyAnime.current.getBoundingClientRect().left);
       }
     };
 
