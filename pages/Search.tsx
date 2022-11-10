@@ -43,6 +43,7 @@ export default function Search() {
   const [season, setSeason] = useState<string | null>(null);
   const [format, setFormat] = useState<string | null>(null);
   const [status, setStatus] = useState<string | null>(null);
+  const [scrollUp, setScrollUp] = useState(false);
   const searchOptions = {
     perPage,
     searchName,
@@ -67,10 +68,18 @@ export default function Search() {
 
   useEffect(() => {
     const handleScroll = (e: any) => {
-      // console.log(
-      //   e.currentTarget.document.body.clientHeight,
-      //   e.currentTarget.scrollY
-      // );
+      if (
+        e.currentTarget.scrollY + e.currentTarget.innerHeight >=
+        e.currentTarget.document.body.clientHeight
+      ) {
+        fetchNextPage();
+      }
+      if (e.currentTarget.scrollY > 100) {
+        setScrollUp(true);
+      } else if (e.currentTarget.scrollY <= 100) {
+        setScrollUp(false);
+        console.log("test");
+      }
     };
     window.addEventListener("scroll", (e) => handleScroll(e));
 
@@ -152,9 +161,6 @@ export default function Search() {
           />
         </div>
       </div>
-      {/* {!searchanime ? (
-        <h2>Loading...</h2>
-      ) : ( */}
       <section className="animelist w-full">
         <div className="popularlist m-4 flex flex-wrap justify-center xs:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
           {!searchanime
@@ -168,15 +174,21 @@ export default function Search() {
               ))}
           {isFetching && arraySkeleton}
         </div>
-        <div className="flex justify-center w-full p-6">
-          <button
-            className="bg-gradient-purple btn-default"
-            onClick={() => fetchNextPage()}
-          >
-            Load More (tmp)
-          </button>
-        </div>
       </section>
+      <div
+        className={`fixed bottom-[2%] right-[2%] w-12 h-12 shadow-md bg-gray-500 hover:bg-gray-600 dark:bg-slate-200 dark:hover:bg-slate-400 rounded-full justify-center items-center cursor-pointer ${
+          !scrollUp ? "hidden" : "flex"
+        }`}
+        onClick={() =>
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          })
+        }
+      >
+        <img className="w-6 object-cover" src="/arrow-up.png" alt="" />
+      </div>
       {/* )} */}
     </>
   );

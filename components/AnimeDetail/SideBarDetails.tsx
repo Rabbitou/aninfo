@@ -55,15 +55,15 @@ export default function SideBarDetails({ data }: { data: AnimeDetails }) {
           </Info>
         )}
         <Info title="Format">
-          <p>{data.format}</p>
+          <p>{data.format || "?"}</p>
         </Info>
         {data.format !== "MANGA" && (
           <Info title="Episode Duration">
-            <p>{data.duration} mins</p>
+            <p>{data.duration || "?"} mins</p>
           </Info>
         )}
         <Info title="Status">
-          <p className="capitalize">{data.status.toLowerCase()}</p>
+          <p className="capitalize">{data.status?.toLowerCase() || "?"}</p>
         </Info>
         <Info title="Start Date">
           <p>
@@ -74,23 +74,23 @@ export default function SideBarDetails({ data }: { data: AnimeDetails }) {
         </Info>
         {data.format !== "MANGA" && (
           <Info title="Season">
-            <p className="capitalize">{`${data.season.toLowerCase()} ${
+            <p className="capitalize">{`${data.season?.toLowerCase() || "?"} ${
               data.seasonYear
             }`}</p>
           </Info>
         )}
         <Info title="Rating">
-          <p>{data.averageScore / 10}</p>
+          <p>{data.averageScore ? data.averageScore / 10 : "?"}</p>
         </Info>
         {data.format !== "MANGA" && (
           <Info title="Studios">
-            {data.studios.nodes.map((n, i) => (
-              <p key={i}>{n.name}</p>
-            ))}
+            {data.studios.nodes.map((n, i) => <p key={i}>{n.name}</p>) || "?"}
           </Info>
         )}
         <Info title="Source">
-          <p className="capitalize">{data.source.toLowerCase()}</p>
+          <p className="capitalize">
+            {data.source ? data.source.toLowerCase() : "?"}
+          </p>
         </Info>
         <Info title="Genres">
           {data.genres.map((n, i) => (
@@ -98,13 +98,13 @@ export default function SideBarDetails({ data }: { data: AnimeDetails }) {
           ))}
         </Info>
         <Info title="Romaji">
-          <p>{data.title.romaji}</p>
+          <p>{data.title.romaji || "?"}</p>
         </Info>
         <Info title="English">
-          <p>{data.title.english}</p>
+          <p>{data.title.english || "?"}</p>
         </Info>
         <Info title="Native">
-          <p>{data.title.native}</p>
+          <p>{data.title.native || "?"}</p>
         </Info>
       </div>
       <h2 className="capitalize my-2">External Links</h2>

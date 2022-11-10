@@ -1,4 +1,2 @@
 - Colors
-- Swiper check slideChange
-- infinite scroll
 - persistence

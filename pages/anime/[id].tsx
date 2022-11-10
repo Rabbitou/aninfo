@@ -45,7 +45,7 @@ export default function AnimePage() {
                 <h4 className="text-2xl text-center md:text-left font-bold uppercase mb-4">
                   {data.title.romaji}
                 </h4>
-                <p>{parse(data.description)}</p>
+                <p>{data.description ? parse(data.description) : "?"}</p>
               </div>
             </div>
             <Tabs
