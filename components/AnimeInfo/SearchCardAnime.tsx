@@ -1,20 +1,43 @@
 import React from "react";
+import { AnimeSearch } from "../../types/AnimeSearch";
+import moment from "moment";
 
-export default function SearchCardAnime() {
+export default function SearchCardAnime({ data }: { data: AnimeSearch }) {
   return (
-    <div className="flex bg-slate-500 w-[350px] p-1">
+    <div className="flex bg-slate-500 hover:bg-slate-600 w-full p-1 cursor-pointer">
       <div className="w-[91px] h-[127px]">
         <img
           className="w-full h-full object-cover"
-          src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/nx21-tXMN3Y20PIL9.jpg"
+          src={data.coverImage?.extraLarge || "?"}
           alt=""
         />
       </div>
       <div className="flex flex-col gap-1 text-xs p-2">
-        <span>Title (TV)</span>
-        <p>Aired: Oct 20, 1999 to ?</p>
-        <p>Score: 8.67</p>
-        <p>Status: Finished</p>
+        <span>
+          {data.title.romaji || "?"} ({data.format || "?"})
+        </span>
+        {data.startDate && data.endDate && (
+          <p>
+            Aired:{" "}
+            {moment(
+              `${data.startDate.month} ${data.startDate.day} ${data.startDate.year}`
+            ).format("MMM DD, YYYY")}{" "}
+            to{" "}
+            {data.endDate ? (
+              <p>
+                {moment(
+                  `${data.endDate.month} ${data.endDate.day} ${data.endDate.year}`
+                ).format("MMM DD, YYYY")}
+              </p>
+            ) : (
+              "?"
+            )}
+          </p>
+        )}
+        <p>Score: {data.averageScore / 10 || "?"}</p>
+        <p className="capitalize">
+          Status: {data.status?.toLowerCase() || "?"}
+        </p>
       </div>
     </div>
   );

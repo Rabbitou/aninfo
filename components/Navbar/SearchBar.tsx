@@ -1,42 +1,70 @@
-import React, { useRef } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
+import { useAnimeSearchName } from "../../hooks/useAnimeSearchName";
+import SearchCardAnime from "../AnimeInfo/SearchCardAnime";
 
 export default function SearchBar() {
-  //   const searchList = useRef<HTMLDivElement>(null);
-  //   const handleFocus = () => {
-  //     if (searchList && searchList.current) {
-  //       searchList.current.classList.add("h-[360px]");
-  //       searchList.current.classList.add("max-h-52");
-  //       searchList.current.classList.remove("h-0");
-  //     }
-  //   };
-  //   const handleBlur = (e: any) => {
-  //     if (
-  //       searchList &&
-  //       searchList.current &&
-  //       !searchList.current.contains(e.target)
-  //     ) {
-  //       // optionList.current.classList.remove("h-auto");
-  //       // optionList.current.classList.remove("max-h-52");
-  //       // optionList.current.classList.toggle("h-0");
-  //       // console.log(e.target);
-  //       // setSearchValue("");
-  //     }
-  //   };
+  const searchList = useRef<HTMLDivElement>(null);
+  const input = useRef<HTMLDivElement>(null);
+  const [searchValue, setSearchValue] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
+  const {
+    data: searchanime,
+    fetchNextPage,
+    isFetching,
+  } = useAnimeSearchName(searchValue);
+  const handleFocus = () => {
+    if (searchList && searchList.current) {
+      setIsFocused(true);
+    }
+  };
+  const handleClickOutside = (e: any) => {
+    if (input && input.current && !input.current.contains(e.target)) {
+      if (searchList && searchList.current) {
+        setIsFocused(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", (e) => handleClickOutside(e));
+
+    return () => {
+      document.removeEventListener("click", (e) => handleClickOutside(e));
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {};
+  }, [searchValue]);
+
   return (
     <>
-      <div className="flex-1 rounded-sm overflow-hidden relative">
+      <div className="flex-1 rounded-sm overflow-hidden relative" ref={input}>
         <input
           className="flex-1 w-full px-2 py-1 outline-none"
-          placeholder="Coming Soon..."
+          placeholder="Search..."
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
           type="text"
-          //   onFocus={handleFocus}
-          //   onBlur={handleBlur}
+          onFocus={handleFocus}
         />
       </div>
-      {/* <div
+      <div
         ref={searchList}
-        className="absolute w-full h-0 top-full bg-slate-500 mt-2 rounded-sm overflow-hidden"
-      ></div> */}
+        className={`absolute w-full ${
+          searchValue && isFocused ? "h-[300px]" : "h-0"
+        } top-full bg-slate-500 mt-2 rounded-sm overflow-hidden overflow-y-scroll transition-all duration-300`}
+      >
+        {!searchanime
+          ? null
+          : searchanime.pages.map((page, index) => (
+              <Fragment key={index}>
+                {page.media.map((anime) => (
+                  <SearchCardAnime data={anime} />
+                ))}
+              </Fragment>
+            ))}
+      </div>
     </>
   );
 }

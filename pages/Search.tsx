@@ -78,7 +78,6 @@ export default function Search() {
         setScrollUp(true);
       } else if (e.currentTarget.scrollY <= 100) {
         setScrollUp(false);
-        console.log("test");
       }
     };
     window.addEventListener("scroll", (e) => handleScroll(e));
@@ -176,7 +175,7 @@ export default function Search() {
         </div>
       </section>
       <div
-        className={`fixed bottom-[2%] right-[2%] w-12 h-12 shadow-md bg-gray-500 hover:bg-gray-600 dark:bg-slate-200 dark:hover:bg-slate-400 rounded-full justify-center items-center cursor-pointer ${
+        className={`fixed bottom-[2%] right-[2%] w-12 h-12 shadow-md bg-gray-500 hover:bg-gray-600 dark:bg-gradient-purple dark:hover:bg-slate-400 rounded-full justify-center items-center cursor-pointer ${
           !scrollUp ? "hidden" : "flex"
         }`}
         onClick={() =>
@@ -187,7 +186,7 @@ export default function Search() {
           })
         }
       >
-        <img className="w-6 object-cover" src="/arrow-up.png" alt="" />
+        <img className="w-6 object-cover invert-0" src="/arrow-up.png" alt="" />
       </div>
       {/* )} */}
     </>

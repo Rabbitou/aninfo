@@ -46,14 +46,17 @@ export default function SideBarDetails({ data }: { data: AnimeDetails }) {
   return (
     <div className="">
       <div className="w-auto md:w-52 p-6 bg-slate-300 dark:bg-gray-700 rounded-sm flex flex-wrap md:flex-col gap-6 md:gap-0">
-        {data.status !== "FINISHED" && data.format !== "MANGA" && (
-          <Info title="airing">
-            <p className="bg-gradient-purple bg-clip-text text-transparent">
-              Ep {data.nextAiringEpisode?.episode || "?"} : {nextairing.days()}d{" "}
-              {nextairing.hours()}h {nextairing.minutes()}m
-            </p>
-          </Info>
-        )}
+        {data.status !== "FINISHED" &&
+          data.format !== "MANGA" &&
+          data.nextAiringEpisode && (
+            <Info title="airing">
+              <p className="bg-gradient-purple bg-clip-text text-transparent">
+                Ep {data.nextAiringEpisode?.episode || "?"} :{" "}
+                {nextairing.days()}d {nextairing.hours()}h{" "}
+                {nextairing.minutes()}m
+              </p>
+            </Info>
+          )}
         <Info title="Format">
           <p>{data.format || "?"}</p>
         </Info>

@@ -15,13 +15,15 @@ export default function Animedata({ data }: { data: Anime }) {
     <div className="rounded-sm overflow-hidden bg-[#E5E5E5] dark:bg-[#5D5D5D] flex flex-col basis-[250px] flex-shrink-0 flex-grow-0 md:basis-[400px]">
       {/* <Primaryinfo /> */}
       <div className="flex flex-col md:flex-row">
-        <div className="animeimg basis-[200px] h-[350px] flex-grow-0 flex-shrink-0">
-          <img
-            className="w-full h-[350px] object-cover"
-            alt="anime img"
-            src={data.coverImage.extraLarge}
-          />
-        </div>
+        <Link href={`/anime/${data.id}`}>
+          <div className="animeimg basis-[200px] h-[350px] flex-grow-0 flex-shrink-0 cursor-pointer hover:opacity-80">
+            <img
+              className="w-full h-[350px] object-cover"
+              alt="anime img"
+              src={data.coverImage.extraLarge}
+            />
+          </div>
+        </Link>
         <div className="synopsis flex   flex-col items-center justify-center bg-slate-300 dark:bg-transparent h-[250px] md:h-full">
           <div className="titleepisodes flex flex-col items-center space-x-2">
             <Link href={`/anime/${data.id}`}>
@@ -49,7 +51,7 @@ export default function Animedata({ data }: { data: Anime }) {
             </div>
           </div>
           <div className="detailsstudio p-4 max-h-44 overflow-y-auto text-center text-xs flex flex-col">
-            <p>{parse(data?.description || "")}</p>
+            <p>{parse(data?.description || "No description")}</p>
             <span>
               Studio:{" "}
               {data.studios.nodes.length > 0 ? data.studios.nodes[0].name : "?"}

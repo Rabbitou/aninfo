@@ -7,7 +7,7 @@ import SwitchMode from "./SwitchMode";
 export default function Navbar() {
   return (
     <nav className="sticky top-0 left-0 bg-black px-4 py-3 flex items-center justify-between text-white z-[9999]">
-      <div className="logo bg-gradient-purple bg-clip-text text-transparent text-xl">
+      <div className="logo bg-gradient-purple bg-clip-text text-transparent text-xl cursor-pointer">
         <Link href="/">
           <img src="/logoaninfo.svg" alt="" />
         </Link>
@@ -21,7 +21,7 @@ export default function Navbar() {
             <SwitchMode />
           </div>
           <div>
-            <Link href="/Search">Anime List</Link>
+            <Link href="/search">Anime List</Link>
           </div>
           <div>
             <button>Coming Soon...</button>

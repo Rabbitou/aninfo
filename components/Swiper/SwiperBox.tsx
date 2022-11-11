@@ -1,11 +1,13 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
 // import "./styles.css";
 
@@ -76,6 +78,13 @@ export default function SwiperBox({
   return (
     <>
       <Swiper
+        modules={[FreeMode, Pagination, Autoplay]}
+        autoplay={{
+          delay: 1000,
+          disableOnInteraction: true,
+          waitForTransition: false,
+        }}
+        speed={1000}
         slidesPerView="auto"
         // spaceBetween={30}
         // initialSlide={6}
@@ -83,7 +92,6 @@ export default function SwiperBox({
         // pagination={{
         //   clickable: true,
         // }}
-        modules={[FreeMode, Pagination]}
         className="mySwiper"
         spaceBetween={20}
         // onSliderMove={(s) => setChangeMove(s.activeIndex)}

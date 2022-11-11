@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { getAnimeSearch } from "../fetchers/getAnimeSearch";
 import { AnimeSearchProps } from "../types/interfaces/AnimeSearch";
 

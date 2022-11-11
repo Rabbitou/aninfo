@@ -1,7 +1,7 @@
 import { Cover, Title } from "./Anime";
 import { TinyAnime } from "../types/TinyAnime";
 import { ExternalLinksType } from "./interfaces/ExternalLinksType";
-type AnimeDate = {
+export type AnimeDate = {
   year: number;
   month: number;
   day: number;
