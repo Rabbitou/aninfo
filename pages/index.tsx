@@ -27,7 +27,6 @@ export default function Home() {
   const [changeMovepo, setChangeMovepo] = useState(0);
   const [changeMovemov, setChangeMovemov] = useState(0);
   // const { data: popularmovie } = "";
-  console.log(banneranime);
   // if (!datatrending) return <h2>Loading...</h2>;
   // if (!popularanime) return <h2>Loading...</h2>;
   // if (!popularmovie) return <h2>Loading...</h2>;

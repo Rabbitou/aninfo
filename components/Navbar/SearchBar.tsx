@@ -53,7 +53,7 @@ export default function SearchBar() {
         ref={searchList}
         className={`absolute w-full ${
           searchValue && isFocused ? "h-[300px]" : "h-0"
-        } top-full bg-[#554E5B] mt-2 rounded-sm overflow-hidden overflow-y-scroll transition-all duration-300`}
+        } top-full dark:bg-[#554E5B] bg-[#AD9FB5] mt-2 rounded-sm overflow-hidden overflow-y-scroll transition-all duration-300`}
       >
         {!searchanime ? (
           <div className="flex items-center justify-center h-full w-full">

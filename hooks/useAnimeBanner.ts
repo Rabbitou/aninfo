@@ -46,7 +46,6 @@ export const useAnimeBanner = () => {
     .slice(-1)[0] || {
     name: "WINTER",
   };
-  console.log(new Date(d).toLocaleDateString(), season.name);
   return useQuery(["anime", season.name], () =>
     getAnimeBanner(season.name, d.getFullYear())
   );
