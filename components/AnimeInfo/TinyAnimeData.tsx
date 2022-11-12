@@ -77,13 +77,13 @@ export default function TinyAnimeData({
             {data.episodes ? ` / ${data.episodes} episodes` : ""}
           </div>
           <p className="h-[170px] overflow-y-scroll text-center px-3 scrollbar-thin text-xs scrollbar-track-gray-500 scrollbar-thumb-gray-600 text-gray-500">
-            {parse(data?.description || "")}
+            {parse(data?.description || "No description")}
           </p>
           <div className="text-center my-1 text-black text-xs text-[10px] px-2">
             {data.genres.map((g) => `${g} `)}
           </div>
           <div className="flex justify-center">
-            <Link href={`/anime/${data.id}`}>
+            <Link href={`/anime/${data.id}`} prefetch={false}>
               <a>
                 <Gradient>
                   <button className="py-1 px-4  hover:text-white transition-colors text-white">

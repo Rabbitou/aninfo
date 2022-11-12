@@ -1,13 +1,17 @@
 import Head from "next/head";
 import React, { useState } from "react";
 import { SwiperSlide } from "swiper/react";
+import AnimeBanner from "../components/AnimeBanner/AnimeBanner";
 import Animedata from "../components/AnimeInfo/Animedata";
 import SearchCardAnime from "../components/AnimeInfo/SearchCardAnime";
 import TinyAnimeData from "../components/AnimeInfo/TinyAnimeData";
 import Gradient from "../components/Gradientborder/Gradient";
+import AnimeBannerSkeleton from "../components/Skeleton/AnimeBannerSkeleton";
 import TinyAnimeSkeleton from "../components/Skeleton/TinyAnimeSkeleton";
+import SwiperBanner from "../components/Swiper/SwiperBanner";
 import SwiperBox from "../components/Swiper/SwiperBox";
 import { endpoint } from "../endpoint/endpoint";
+import { useAnimeBanner } from "../hooks/useAnimeBanner";
 import { usePopularAnime } from "../hooks/usePopularAnime";
 import { usePopularMovie } from "../hooks/usePopularMovie";
 import { useTrendingAnime } from "../hooks/useTrendingAnime";
@@ -18,20 +22,39 @@ export default function Home() {
   const { data: popularanime } = usePopularAnime(20);
   // const { data: popularanime } = "";
   const { data: popularmovie } = usePopularMovie(20);
+  const { data: banneranime } = useAnimeBanner();
   const [changeMovetr, setChangeMovetr] = useState(0);
   const [changeMovepo, setChangeMovepo] = useState(0);
   const [changeMovemov, setChangeMovemov] = useState(0);
   // const { data: popularmovie } = "";
+  console.log(banneranime);
   // if (!datatrending) return <h2>Loading...</h2>;
   // if (!popularanime) return <h2>Loading...</h2>;
   // if (!popularmovie) return <h2>Loading...</h2>;
+
   return (
     <>
       <Head>
         <title>Home</title>
       </Head>
       <section className="flex flex-col">
-        {/* <SearchCardAnime /> */}
+        <div className="w-full">
+          <SwiperBanner>
+            {banneranime
+              ? banneranime.map((anime, i) => (
+                  <SwiperSlide key={i} className="!w-full md:!w-[1200px]">
+                    {" "}
+                    {<AnimeBanner data={anime} />}
+                  </SwiperSlide>
+                ))
+              : [...new Array(3)].map((_, i) => (
+                  <SwiperSlide key={i} className="!w-full md:!w-[1200px]">
+                    {" "}
+                    {<AnimeBannerSkeleton />}
+                  </SwiperSlide>
+                ))}
+          </SwiperBanner>
+        </div>
         <div className="trendingdiv w-full">
           <div className="titletrending mb-6">
             <h2 className="p-4 capitalize">trending now</h2>

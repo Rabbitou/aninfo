@@ -41,7 +41,7 @@ export default function SearchBar() {
     <>
       <div className="flex-1 rounded-sm overflow-hidden relative" ref={input}>
         <input
-          className="flex-1 w-full px-2 py-1 outline-none"
+          className="flex-1 w-full px-2 py-1 outline-none text-black dark:text-white"
           placeholder="Search..."
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
@@ -53,17 +53,27 @@ export default function SearchBar() {
         ref={searchList}
         className={`absolute w-full ${
           searchValue && isFocused ? "h-[300px]" : "h-0"
-        } top-full bg-slate-500 mt-2 rounded-sm overflow-hidden overflow-y-scroll transition-all duration-300`}
+        } top-full bg-[#554E5B] mt-2 rounded-sm overflow-hidden overflow-y-scroll transition-all duration-300`}
       >
-        {!searchanime
-          ? null
-          : searchanime.pages.map((page, index) => (
-              <Fragment key={index}>
-                {page.media.map((anime) => (
-                  <SearchCardAnime data={anime} />
-                ))}
-              </Fragment>
-            ))}
+        {!searchanime ? (
+          <div className="flex items-center justify-center h-full w-full">
+            <div className="cascade">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        ) : (
+          searchanime.pages.map((page, index) => (
+            <Fragment key={index}>
+              {page.media.map((anime) => (
+                <SearchCardAnime data={anime} />
+              ))}
+            </Fragment>
+          ))
+        )}
       </div>
     </>
   );

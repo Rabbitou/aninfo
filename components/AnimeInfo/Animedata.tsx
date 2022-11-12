@@ -12,10 +12,10 @@ export default function Animedata({ data }: { data: Anime }) {
     "milliseconds"
   );
   return (
-    <div className="rounded-sm overflow-hidden bg-[#E5E5E5] dark:bg-[#5D5D5D] flex flex-col basis-[250px] flex-shrink-0 flex-grow-0 md:basis-[400px]">
+    <div className="rounded-sm overflow-hidden bg-[#ada9af] dark:bg-[#68656a] flex flex-col basis-[250px] flex-shrink-0 flex-grow-0 md:basis-[400px]">
       {/* <Primaryinfo /> */}
       <div className="flex flex-col md:flex-row">
-        <Link href={`/anime/${data.id}`}>
+        <Link href={`/anime/${data.id}`} prefetch={false}>
           <div className="animeimg basis-[200px] h-[350px] flex-grow-0 flex-shrink-0 cursor-pointer hover:opacity-80">
             <img
               className="w-full h-[350px] object-cover"
@@ -24,10 +24,10 @@ export default function Animedata({ data }: { data: Anime }) {
             />
           </div>
         </Link>
-        <div className="synopsis flex   flex-col items-center justify-center bg-slate-300 dark:bg-transparent h-[250px] md:h-full">
+        <div className="synopsis flex   flex-col items-center justify-center bg-[#ada9af] dark:bg-[#68656a] h-[250px] md:h-full">
           <div className="titleepisodes flex flex-col items-center space-x-2">
-            <Link href={`/anime/${data.id}`}>
-              <a className="animetitle p-2 text-center hover:text-blue-400 transition-all">
+            <Link href={`/anime/${data.id}`} prefetch={false}>
+              <a className="animetitle p-2 text-center hover:text-[#2b2b2bb9] dark:hover:text-[#c7c7c7b9] transition-all">
                 {data.title.romaji || "?"}
               </a>
             </Link>
@@ -61,7 +61,7 @@ export default function Animedata({ data }: { data: Anime }) {
       </div>
       {/* <Secondaryinfo /> */}
       <div className="secondary flex flex-col flex-1">
-        <div className="ratingstatus flex md:flex-row flex-col items-center justify-center space-x-4 bg-[#CACACA] dark:bg-[#2B2B2B] p-2">
+        <div className="ratingstatus flex md:flex-row flex-col items-center justify-center space-x-4 bg-[#c2bdc5] dark:bg-[#2B2B2B] p-2">
           <div className="rating flex items-center">
             <img src="/icons8-star-48.png" className="w-5 h-5 mx-1" />{" "}
             {data.averageScore / 10 || "?"}
@@ -74,7 +74,7 @@ export default function Animedata({ data }: { data: Anime }) {
             | {data.episodes || "?"} eps, {data.duration || "?"} min
           </div>
         </div>
-        <div className="genre bg-[#AFAFAF] dark:bg-[#444444] flex-1 flex  items-center justify-center">
+        <div className="genre bg-[#D8D4DA] dark:bg-[#444444] flex-1 flex  items-center justify-center">
           <ul className="flex space-x-2 flex-wrap p-2 justify-center text-xs md:text-sm">
             {data.genres.map((ge) => (
               <li key={data.id + ge}>{ge}</li>

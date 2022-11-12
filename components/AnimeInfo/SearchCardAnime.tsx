@@ -4,7 +4,7 @@ import moment from "moment";
 
 export default function SearchCardAnime({ data }: { data: AnimeSearch }) {
   return (
-    <div className="flex bg-slate-500 hover:bg-slate-600 w-full p-1 cursor-pointer">
+    <div className="flex dark:bg-[#554E5B] bg-[#AD9FB5] hover:bg-[#978b9f] dark:hover:bg-[#635b6a] dark:text-white text-black w-full p-1 cursor-pointer">
       <div className="w-[91px] h-[127px]">
         <img
           className="w-full h-full object-cover"
