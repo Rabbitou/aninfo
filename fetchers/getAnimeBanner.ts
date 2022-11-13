@@ -15,8 +15,8 @@ export const getAnimeBanner = async (
         Page(page: 1, perPage: 7) {
             media(
                 type: ANIME
-                season: ${`${season}`}
-                seasonYear: ${`${seasonYear}`}
+                season: ${season}
+                seasonYear: ${seasonYear}
                 status: RELEASING
                 isAdult: false
                 sort: POPULARITY_DESC
