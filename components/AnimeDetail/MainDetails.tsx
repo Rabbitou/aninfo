@@ -55,6 +55,7 @@ function Overview({ data }: { data: AnimeDetails }) {
         <hr className="w-[50%] mb-6" />
         <div className="flex flex-wrap gap-6">
           {data.recommendations.nodes
+            .filter((media) => media.mediaRecommendation)
             .slice(0, 6)
             .map(({ mediaRecommendation }, i) => (
               <TinyAnimeData key={i} data={mediaRecommendation} />
