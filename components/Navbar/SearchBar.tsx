@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useAnimeSearchName } from "../../hooks/useAnimeSearchName";
+import { useDebounce } from "../../hooks/useDebounce";
 import SearchCardAnime from "../AnimeInfo/SearchCardAnime";
 
 export default function SearchBar() {
@@ -7,11 +8,12 @@ export default function SearchBar() {
   const input = useRef<HTMLDivElement>(null);
   const [searchValue, setSearchValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const debouncedSearchValue = useDebounce(searchValue, 500);
   const {
     data: searchanime,
     fetchNextPage,
-    isFetching,
-  } = useAnimeSearchName(searchValue);
+    isLoading,
+  } = useAnimeSearchName(debouncedSearchValue);
   const handleFocus = () => {
     if (searchList && searchList.current) {
       setIsFocused(true);
@@ -35,7 +37,7 @@ export default function SearchBar() {
 
   useEffect(() => {
     return () => {};
-  }, [searchValue]);
+  }, [debouncedSearchValue]);
 
   return (
     <>

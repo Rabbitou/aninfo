@@ -3,6 +3,7 @@ import { TinyAnime } from "../../types/TinyAnime";
 import Gradient from "../Gradientborder/Gradient";
 import parse from "html-react-parser";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function TinyAnimeData({
   data,
@@ -56,6 +57,12 @@ export default function TinyAnimeData({
             alt="CoverImg"
             src={data.coverImage.extraLarge}
           />
+          {/* <Image
+            src={data.coverImage.extraLarge}
+            draggable={false}
+            width={"full"}
+            height={260}
+          /> */}
         </div>
         <div className="title text-center truncate py-1">
           {data.title.romaji || "?"}
