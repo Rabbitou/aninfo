@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { Staff } from "../../types/AnimeDetails";
 
@@ -5,10 +6,11 @@ export default function StaffCard({ data }: { data: Staff }) {
   return (
     <div className="flex h-40 w-full lg:w-[47%] bg-slate-300 dark:bg-gray-700">
       <div className="w-[106px]">
-        <img
-          className="w-full h-full object-cover"
+        <Image
           src={data.image.large}
-          alt=""
+          width={106}
+          height={160}
+          objectFit={"cover"}
         />
       </div>
       <div className="p-1 pl-3">

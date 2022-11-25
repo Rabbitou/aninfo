@@ -1,10 +1,9 @@
 import React from "react";
 import { Anime } from "../../types/Anime";
-import Primaryinfo from "./Primaryinfo";
-import Secondaryinfo from "./Secondaryinfo";
 import parse from "html-react-parser";
 import moment from "moment";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Animedata({ data }: { data: Anime }) {
   const nextairing = moment.duration(
@@ -13,18 +12,22 @@ export default function Animedata({ data }: { data: Anime }) {
   );
   return (
     <div className="rounded-sm overflow-hidden bg-[#ada9af] dark:bg-[#68656a] flex flex-col basis-[250px] flex-shrink-0 flex-grow-0 md:basis-[400px]">
-      {/* <Primaryinfo /> */}
       <div className="flex flex-col md:flex-row">
         <Link href={`/anime/${data.id}`} prefetch={false}>
-          <div className="animeimg basis-[200px] h-[350px] flex-grow-0 flex-shrink-0 cursor-pointer hover:opacity-80">
-            <img
+          <div className="animeimg basis-[200px] h-[350px] flex-grow-0 flex-shrink-0 cursor-pointer hover:opacity-80 transition-all relative">
+            {/* <img
               className="w-full h-[350px] object-cover"
               alt="anime img"
               src={data.coverImage.extraLarge}
+            /> */}
+            <Image
+              src={data.coverImage.extraLarge}
+              layout={"fill"}
+              objectFit={"cover"}
             />
           </div>
         </Link>
-        <div className="synopsis flex   flex-col items-center justify-center bg-[#ada9af] dark:bg-[#68656a] h-[250px] md:h-full">
+        <div className="synopsis flex flex-col items-center justify-center bg-[#ada9af] dark:bg-[#68656a] h-[250px] md:h-full">
           <div className="titleepisodes flex flex-col items-center space-x-2">
             <Link href={`/anime/${data.id}`} prefetch={false}>
               <a className="animetitle p-2 text-center hover:text-[#2b2b2bb9] dark:hover:text-[#c7c7c7b9] transition-all">
@@ -59,7 +62,6 @@ export default function Animedata({ data }: { data: Anime }) {
           </div>
         </div>
       </div>
-      {/* <Secondaryinfo /> */}
       <div className="secondary flex flex-col flex-1">
         <div className="ratingstatus flex md:flex-row flex-col items-center justify-center space-x-4 bg-[#c2bdc5] dark:bg-[#2B2B2B] p-2">
           <div className="rating flex items-center">

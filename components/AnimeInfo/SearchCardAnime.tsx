@@ -2,16 +2,18 @@ import React from "react";
 import { AnimeSearch } from "../../types/AnimeSearch";
 import moment from "moment";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function SearchCardAnime({ data }: { data: AnimeSearch }) {
   return (
     <Link href={`/anime/${data.id}`} prefetch={false}>
       <div className="flex dark:bg-[#554E5B] bg-[#AD9FB5] hover:bg-[#978b9f] dark:hover:bg-[#635b6a] dark:text-white text-black w-full p-1 cursor-pointer">
         <div className="w-[91px] h-[127px]">
-          <img
-            className="w-full h-full object-cover"
+          <Image
             src={data.coverImage?.extraLarge || "?"}
-            alt=""
+            width={91}
+            height={127}
+            objectFit={"cover"}
           />
         </div>
         <div className="flex flex-1 flex-col gap-1 text-xs p-2">

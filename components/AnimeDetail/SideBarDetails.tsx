@@ -3,6 +3,7 @@ import { AnimeDetails } from "../../types/AnimeDetails";
 import { ExternalLinksType } from "../../types/interfaces/ExternalLinksType";
 import moment from "moment";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 
 function ExternalLinks({ link }: { link: ExternalLinksType }) {
   const { theme, systemTheme } = useTheme();
@@ -22,11 +23,10 @@ function ExternalLinks({ link }: { link: ExternalLinksType }) {
         style={{ backgroundColor: link.color || "#505050" }}
         className={`flex p-1 w-6 h-6 justify-center items-center m-1 rounded-[3px]`}
       >
-        {" "}
-        <img
-          className="w-full h-full"
+        <Image
           src={link.icon || "/icons8-link-64.png"}
-          alt={link.site}
+          width={24}
+          height={24}
         />
       </div>
       <span>{link.site}</span>

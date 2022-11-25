@@ -51,18 +51,13 @@ export default function TinyAnimeData({
     <div className="group relative" ref={tinyAnime}>
       <div className="containeranime w-[170px]">
         <div className="animeimg w-[170px] h-[260px] flex-grow-0 flex-shrink-0 shadow-md rounded-sm overflow-hidden">
-          <img
-            className="w-full h-[260px] object-cover"
-            draggable={false}
-            alt="CoverImg"
-            src={data.coverImage.extraLarge}
-          />
-          {/* <Image
+          <Image
             src={data.coverImage.extraLarge}
             draggable={false}
-            width={"full"}
+            width={170}
             height={260}
-          /> */}
+            objectFit={"cover"}
+          />
         </div>
         <div className="title text-center truncate py-1">
           {data.title.romaji || "?"}
