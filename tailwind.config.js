@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#FA26A0",
-        secondary: "#FD77C4",
+        primary: "#DA22FF",
+        secondary: "#9733EE",
       },
       gridTemplateColumns: {
         primary: "grid-template-cols: 180px auto;",

@@ -58,27 +58,28 @@ export default function AnimePage() {
               aria-label="basic tabs example"
               sx={{ borderBottom: 1, borderColor: "#454545", width: "100%" }}
               className="dark:text-white"
+              TabIndicatorProps={{ style: { backgroundColor: "#9733EE" } }}
               centered
             >
               <Tab
                 label="Overview"
                 value={0}
                 className={`${
-                  value === 0 ? "dark:text-[#1976d2]" : ""
+                  value === 0 ? "dark:text-secondary" : ""
                 } dark:text-white`}
               />
               <Tab
                 label="Characters"
                 value={1}
                 className={`${
-                  value === 1 ? "dark:text-[#1976d2]" : ""
+                  value === 1 ? "dark:text-secondary" : ""
                 } dark:text-white`}
               />
               <Tab
                 label="Staff"
                 value={2}
                 className={`${
-                  value === 2 ? "dark:text-[#1976d2]" : ""
+                  value === 2 ? "dark:text-secondary" : ""
                 } dark:text-white`}
               />
             </Tabs>

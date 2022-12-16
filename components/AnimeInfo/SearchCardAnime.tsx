@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function SearchCardAnime({ data }: { data: AnimeSearch }) {
   return (
     <Link href={`/anime/${data.id}`} prefetch={false}>
-      <div className="flex dark:bg-[#554E5B] bg-[#AD9FB5] hover:bg-[#978b9f] dark:hover:bg-[#635b6a] dark:text-white text-black w-full p-1 cursor-pointer">
+      <div className="flex dark:bg-[#3B3B3B] bg-gray-300 hover:bg-secondary hover:dark:bg-secondary hover:text-white dark:text-white text-black w-full p-1 cursor-pointer transition-all">
         <div className="w-[91px] h-[127px]">
           <Image
             src={data.coverImage?.extraLarge || "?"}

@@ -11,7 +11,7 @@ export default function Animedata({ data }: { data: Anime }) {
     "milliseconds"
   );
   return (
-    <div className="rounded-sm overflow-hidden bg-[#ada9af] dark:bg-[#68656a] flex flex-col basis-[250px] flex-shrink-0 flex-grow-0 md:basis-[400px]">
+    <div className="rounded-sm overflow-hidden bg-[#ada9af] dark:bg-gray-700 flex flex-col basis-[250px] flex-shrink-0 flex-grow-0 md:basis-[400px]">
       <div className="flex flex-col md:flex-row">
         <Link href={`/anime/${data.id}`} prefetch={false}>
           <div className="animeimg basis-[200px] h-[350px] flex-grow-0 flex-shrink-0 cursor-pointer hover:opacity-80 transition-all relative">
@@ -27,7 +27,7 @@ export default function Animedata({ data }: { data: Anime }) {
             />
           </div>
         </Link>
-        <div className="synopsis flex flex-col items-center justify-center bg-[#ada9af] dark:bg-[#68656a] h-[250px] md:h-full">
+        <div className="synopsis flex flex-col items-center justify-center bg-[#ada9af] dark:bg-[#272727] h-[250px] md:h-full w-full">
           <div className="titleepisodes flex flex-col items-center space-x-2">
             <Link href={`/anime/${data.id}`} prefetch={false}>
               <a className="animetitle p-2 text-center hover:text-[#2b2b2bb9] dark:hover:text-[#c7c7c7b9] transition-all">
@@ -53,7 +53,7 @@ export default function Animedata({ data }: { data: Anime }) {
               )}
             </div>
           </div>
-          <div className="detailsstudio p-4 max-h-44 overflow-y-auto text-center text-xs flex flex-col">
+          <div className="detailsstudio p-4 max-h-44 overflow-y-auto text-center text-xs flex flex-col scrollbar-thumb-[#9733ee99] scrollbar-track-[#404040] scrollbar-thin">
             <p>{parse(data?.description || "No description")}</p>
             <span>
               Studio:{" "}
@@ -63,9 +63,12 @@ export default function Animedata({ data }: { data: Anime }) {
         </div>
       </div>
       <div className="secondary flex flex-col flex-1">
-        <div className="ratingstatus flex md:flex-row flex-col items-center justify-center space-x-4 bg-[#c2bdc5] dark:bg-[#2B2B2B] p-2">
+        <div className="ratingstatus flex md:flex-row flex-col items-center justify-center space-x-4 bg-[#c2bdc5] dark:bg-[#3b3b3b] p-2">
           <div className="rating flex items-center">
-            <img src="/icons8-star-48.png" className="w-5 h-5 mx-1" />{" "}
+            <img
+              src="/star-small.png"
+              className="w-4 md:w-5 h-4 md:h-5 mx-[6px] md:mx-[10px]"
+            />{" "}
             {data.averageScore / 10 || "?"}
           </div>
           <div className="status py-1 text-xs md:text-sm">
@@ -76,7 +79,7 @@ export default function Animedata({ data }: { data: Anime }) {
             | {data.episodes || "?"} eps, {data.duration || "?"} min
           </div>
         </div>
-        <div className="genre bg-[#D8D4DA] dark:bg-[#444444] flex-1 flex  items-center justify-center">
+        <div className="genre bg-[#D8D4DA] dark:bg-[#4e4e4e] flex-1 flex  items-center justify-center">
           <ul className="flex space-x-2 flex-wrap p-2 justify-center text-xs md:text-sm">
             {data.genres.map((ge) => (
               <li key={data.id + ge}>{ge}</li>

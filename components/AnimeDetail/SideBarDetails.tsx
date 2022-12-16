@@ -14,10 +14,12 @@ function ExternalLinks({ link }: { link: ExternalLinksType }) {
       onMouseEnter={(e: any) => (e.target.style.backgroundColor = link.color)}
       onMouseLeave={(e: any) =>
         (e.target.style.backgroundColor = `${
-          currentTheme === "dark" ? "rgb(55 65 81 / 1)" : "rgb(203 213 225 / 1)"
+          currentTheme === "dark"
+            ? "rgb(39 39 39  / 1)"
+            : "rgb(203 213 225 / 1)"
         }`)
       }
-      className={`flex no-underline rounded-sm text-sm gap-3 md:mb-1 bg-slate-300 dark:bg-gray-700 items-center transition-all p-[2px] w-[48%] md:w-52`}
+      className={`flex no-underline rounded-sm text-sm gap-3 md:mb-1 bg-slate-300 dark:bg-[#272727] items-center transition-all p-[2px] w-[48%] md:w-52`}
     >
       <div
         style={{ backgroundColor: link.color || "#505050" }}
@@ -50,7 +52,7 @@ export default function SideBarDetails({ data }: { data: AnimeDetails }) {
   );
   return (
     <div className="">
-      <div className="w-auto md:w-52 p-6 bg-slate-300 dark:bg-gray-700 rounded-sm flex flex-wrap md:flex-col gap-6 md:gap-0">
+      <div className="w-auto md:w-52 p-6 bg-slate-300 dark:bg-[#272727] rounded-sm flex flex-wrap md:flex-col gap-6 md:gap-0">
         {data.status !== "FINISHED" &&
           data.format !== "MANGA" &&
           data.nextAiringEpisode && (

@@ -17,15 +17,17 @@ export const getAnimeBanner = async (
                 type: ANIME
                 season: ${season}
                 seasonYear: ${seasonYear}
-                status: RELEASING
                 isAdult: false
-                sort: POPULARITY_DESC
+                sort: TRENDING_DESC
             ) {
                 id
                 title {
                     romaji
                 }
                 bannerImage
+                coverImage {
+                  extraLarge
+                }
                 description
             }
         }

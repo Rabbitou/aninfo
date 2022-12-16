@@ -35,15 +35,11 @@ export default function SearchBar() {
     };
   }, []);
 
-  useEffect(() => {
-    return () => {};
-  }, [debouncedSearchValue]);
-
   return (
     <>
       <div className="flex-1 rounded-sm overflow-hidden relative" ref={input}>
         <input
-          className="flex-1 w-full px-2 py-1 outline-none text-black dark:text-white"
+          className="flex-1 w-full px-2 py-1 outline-none text-black dark:text-white bg-gray-300 dark:bg-[#3B3B3B]"
           placeholder="Search..."
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
@@ -55,7 +51,7 @@ export default function SearchBar() {
         ref={searchList}
         className={`absolute w-full ${
           searchValue && isFocused ? "h-[300px]" : "h-0"
-        } top-full dark:bg-[#554E5B] bg-[#AD9FB5] mt-2 rounded-sm overflow-hidden overflow-y-scroll transition-all duration-300`}
+        } top-full dark:bg-[#3B3B3B] bg-gray-300 mt-2 rounded-sm overflow-hidden overflow-y-scroll transition-all duration-300 scrollbar-thin scrollbar-thumb-secondary scrollbar-track-gray-300 dark:scrollbar-track-[#3B3B3B]`}
       >
         {!searchanime ? (
           <div className="flex items-center justify-center h-full w-full">

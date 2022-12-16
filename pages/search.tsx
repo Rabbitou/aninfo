@@ -8,6 +8,7 @@ import Multipleselector from "../components/Selector/Multipleselector";
 import SimpleSelector from "../components/Selector/SimpleSelector";
 import LoadingAnimeSearch from "../components/Skeleton/LoadingAnimeSearch";
 import { useAnimeSearch } from "../hooks/useAnimeSearch";
+import { useDebounce } from "../hooks/useDebounce";
 import { useGenreCollection } from "../hooks/useGenreCollection";
 
 export default function Search() {
@@ -38,6 +39,7 @@ export default function Search() {
   ];
   const perPage: number = 50;
   const [searchName, setSearchName] = useState<string | null>(null);
+  const debouncedSearchValue = useDebounce<string | null>(searchName, 500);
   const [genreList, setGenreList] = useState<string[] | null>(null);
   const [seasonYear, setSeasonYear] = useState<string | null>(null);
   const [season, setSeason] = useState<string | null>(null);
@@ -46,7 +48,7 @@ export default function Search() {
   const [scrollUp, setScrollUp] = useState(false);
   const searchOptions = {
     perPage,
-    searchName,
+    searchName: debouncedSearchValue,
     genreList,
     seasonYear,
     season,

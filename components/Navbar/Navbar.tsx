@@ -14,7 +14,7 @@ export default function Navbar() {
               <img src="/logoaninfo.svg" alt="" />
             </Link>
           </div>
-          <div className="w-1/3 relative items-center  hidden sm:flex">
+          <div className="w-2/3 max-w-2xl relative items-center  hidden md:flex">
             <SearchBar />
           </div>
           <div>
@@ -27,13 +27,10 @@ export default function Navbar() {
                   Anime List
                 </Link>
               </div>
-              <div>
-                <button>Coming Soon...</button>
-              </div>
             </div>
           </div>
         </div>
-        <div className="w-full relative flex sm:hidden mt-3">
+        <div className="w-full relative flex md:hidden mt-3">
           <SearchBar />
         </div>
       </nav>

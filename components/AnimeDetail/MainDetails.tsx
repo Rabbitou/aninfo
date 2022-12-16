@@ -10,7 +10,7 @@ import StaffCard from "./StaffCard";
 
 function Overview({ data }: { data: AnimeDetails }) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 w-full">
       <div className="relations">
         <h3 className="font-semibold text-lg">Relations</h3>
         <hr className="w-[50%]" />
@@ -67,7 +67,7 @@ function Overview({ data }: { data: AnimeDetails }) {
 }
 function Characters({ data }: { data: Characters[] }) {
   return (
-    <div className="characters">
+    <div className="characters w-full">
       <div className="flex flex-wrap gap-4 mt-6">
         {data
           ? data.map((c, i) => <CharactersCard key={i} data={c} />)
@@ -78,7 +78,7 @@ function Characters({ data }: { data: Characters[] }) {
 }
 function Staff({ data }: { data: Staff[] }) {
   return (
-    <div className="staff">
+    <div className="staff w-full">
       <div className="flex flex-wrap gap-4 mt-6">
         {data
           ? data.map((s, i) => <StaffCard key={i} data={s} />)

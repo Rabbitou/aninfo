@@ -8,41 +8,25 @@ export const useAnimeBanner = () => {
 
   var seasonArray = [
     {
-      name: "SPRING",
-      date: new Date(
-        d.getFullYear(),
-        2,
-        d.getFullYear() % 4 === 0 ? 19 : 20
-      ).getTime(),
+      name: "FALL",
+      date: 12,
     },
     {
       name: "SUMMER",
-      date: new Date(
-        d.getFullYear(),
-        5,
-        d.getFullYear() % 4 === 0 ? 20 : 21
-      ).getTime(),
+      date: 9,
     },
     {
-      name: "FALL",
-      date: new Date(
-        d.getFullYear(),
-        8,
-        d.getFullYear() % 4 === 0 ? 22 : 23
-      ).getTime(),
+      name: "SPRING",
+      date: 6,
     },
     {
       name: "WINTER",
-      date: new Date(
-        d.getFullYear(),
-        11,
-        d.getFullYear() % 4 === 0 ? 20 : 21
-      ).getTime(),
+      date: 3,
     },
   ];
 
   const season = seasonArray
-    .filter(({ date }) => date <= d.getTime())
+    .filter(({ date }) => date >= d.getMonth())
     .slice(-1)[0] || {
     name: "WINTER",
   };

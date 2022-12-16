@@ -4,7 +4,7 @@ import { Characters } from "../../types/AnimeDetails";
 
 export default function CharactersCard({ data }: { data: Characters }) {
   return (
-    <div className="flex h-40 w-full lg:w-[47%] bg-slate-300 dark:bg-gray-700">
+    <div className="flex h-40 w-full lg:w-[47%] bg-slate-300 dark:bg-[#272727]">
       <div className="w-[106px]">
         <Image
           src={data.image.large}
