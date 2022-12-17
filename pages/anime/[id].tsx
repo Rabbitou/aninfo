@@ -65,21 +65,21 @@ export default function AnimePage() {
                 label="Overview"
                 value={0}
                 className={`${
-                  value === 0 ? "dark:text-secondary" : ""
+                  value === 0 ? "!text-secondary dark:text-secondary" : ""
                 } dark:text-white`}
               />
               <Tab
                 label="Characters"
                 value={1}
                 className={`${
-                  value === 1 ? "dark:text-secondary" : ""
+                  value === 1 ? "!text-secondary dark:text-secondary" : ""
                 } dark:text-white`}
               />
               <Tab
                 label="Staff"
                 value={2}
                 className={`${
-                  value === 2 ? "dark:text-secondary" : ""
+                  value === 2 ? "!text-secondary dark:text-secondary" : ""
                 } dark:text-white`}
               />
             </Tabs>

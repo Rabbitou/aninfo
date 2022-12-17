@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Head from "next/head";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
+import SearchBar from "../components/Navbar/SearchBar";
 
 const queryclient = new QueryClient({
   defaultOptions: {
@@ -33,6 +34,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       >
         <ThemeProvider attribute="class">
           <Navbar />
+          <div className="flex items-center justify-center md:hidden">
+            <div className="w-[92%] relative flex md:hidden my-3">
+              <SearchBar />
+            </div>
+          </div>
           <Component {...pageProps} />
         </ThemeProvider>
         <ReactQueryDevtools initialIsOpen={false} position="bottom-left" />

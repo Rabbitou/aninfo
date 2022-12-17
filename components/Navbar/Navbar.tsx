@@ -11,7 +11,9 @@ export default function Navbar() {
         <div className="flex items-center justify-between w-full">
           <div className="logo bg-gradient-purple bg-clip-text text-transparent text-xl cursor-pointer">
             <Link href="/">
-              <img src="/logoaninfo.svg" alt="" />
+              <a>
+                <img src="/logoaninfo.svg" alt="" />
+              </a>
             </Link>
           </div>
           <div className="w-2/3 max-w-2xl relative items-center  hidden md:flex">
@@ -22,16 +24,8 @@ export default function Navbar() {
               <div>
                 <SwitchMode />
               </div>
-              <div>
-                <Link href="/search" prefetch={false}>
-                  Anime List
-                </Link>
-              </div>
             </div>
           </div>
-        </div>
-        <div className="w-full relative flex md:hidden mt-3">
-          <SearchBar />
         </div>
       </nav>
     </>

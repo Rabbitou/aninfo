@@ -15,7 +15,8 @@ export default function InputTextCustom({
         onChange={(e) =>
           onChange(e.target.value === "" ? null : e.target.value)
         }
-        className="w-44 h-[36px] focus:outline-none rounded-sm shadow-[0px_2px_5px_#666666] p-2 bg-[#737373] dark:bg-white dark:text-black"
+        className="w-44 h-[36px] focus:outline-none rounded-sm  p-2 bg-gray-400 dark:bg-[#3B3B3B] dark:text-white text-gray-800 shadow-[0px_2px_5px_#666666] dark:shadow-none placeholder-gray-600 dark:placeholder-gray-400"
+        // shadow-[0px_2px_5px_#666666]
       />
     </div>
   );

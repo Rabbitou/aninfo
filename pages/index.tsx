@@ -57,7 +57,7 @@ export default function Home() {
         <div className="trendingdiv w-full">
           <div className="titletrending mb-6">
             <h2 className="p-4 capitalize">trending now</h2>
-            <hr className="mx-4" />
+            <hr className="mx-4 border-black dark:border-white" />
           </div>
           <SwiperBox setChangeMove={setChangeMovetr}>
             {datatrending
@@ -78,7 +78,7 @@ export default function Home() {
         <div className="populardiv w-full">
           <div className="titlepopular mb-6">
             <h2 className="p-4 capitalize">popular anime</h2>
-            <hr className="mx-4" />
+            <hr className="mx-4 border-black dark:border-white" />
           </div>
           <SwiperBox setChangeMove={setChangeMovepo}>
             {popularanime
@@ -99,7 +99,7 @@ export default function Home() {
         <div className="popularmoviediv w-full">
           <div className="titlepopularmovie mb-6">
             <h2 className="p-4 capitalize">popular movies</h2>
-            <hr className="mx-4" />
+            <hr className="mx-4 border-black dark:border-white" />
           </div>
           <SwiperBox setChangeMove={setChangeMovemov}>
             {popularmovie

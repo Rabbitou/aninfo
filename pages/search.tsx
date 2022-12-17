@@ -1,6 +1,6 @@
 import { dividerClasses, Skeleton } from "@mui/material";
 import Head from "next/head";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import Animedata from "../components/AnimeInfo/Animedata";
 import InputTextCustom from "../components/Input/InputTextCustom";
 import CustomSelector from "../components/Selector/CustomSelector";
@@ -46,6 +46,7 @@ export default function Search() {
   const [format, setFormat] = useState<string | null>(null);
   const [status, setStatus] = useState<string | null>(null);
   const [scrollUp, setScrollUp] = useState(false);
+  const searchOptionDiv = useRef<HTMLDivElement>(null);
   const searchOptions = {
     perPage,
     searchName: debouncedSearchValue,
@@ -64,6 +65,7 @@ export default function Search() {
   const { data: genrelist } = useGenreCollection();
 
   const genrefiltered = genrelist?.filter((e) => e !== "Hentai");
+  // const genrefiltered = "";
   const arraySkeleton = [...new Array(10)].map((_, i) => (
     <LoadingAnimeSearch key={i} />
   ));
@@ -89,12 +91,29 @@ export default function Search() {
     };
   }, []);
 
+  const handleClick = (e: any) => {
+    if (searchOptionDiv && searchOptionDiv.current) {
+      if (searchOptionDiv.current.classList.contains("h-0")) {
+        searchOptionDiv.current.classList.remove("h-0");
+        searchOptionDiv.current.classList.remove("invisible");
+        e.target.setAttribute("src", "/minus_icon.png");
+      } else {
+        searchOptionDiv.current.classList.add("h-0");
+        searchOptionDiv.current.classList.add("invisible");
+        e.target.setAttribute("src", "/plus_icon.png");
+      }
+    }
+  };
+
   return (
     <>
       <Head>
         <title>Anime List</title>
       </Head>
-      <div className="searchtools flex flex-wrap m-10 gap-4 justify-center">
+      <div
+        ref={searchOptionDiv}
+        className="searchtools flex flex-wrap m-5 sm:m-10 gap-4 justify-center h-0 overflow-hidden sm:h-auto invisible sm:visible"
+      >
         <div className="searchdiv text-center">
           <h3 className="m-2">Search</h3>
           <InputTextCustom place="Search" onChange={setSearchName} />
@@ -113,19 +132,19 @@ export default function Search() {
               setOptions={setGenreList}
             />
           ) : (
-            <div className="selector h-[36px] rounded-sm overflow-hidden shadow-[0px_2px_5px_#666666] outline-1 outline-gray-300 outline-double">
+            <div className="selector h-[36px] rounded-sm overflow-hidden shadow-[0px_2px_5px_#666666] dark:shadow-none">
               <div
-                className="bg-[#737373] w-44 h-[38px] rounded-sm flex items-center"
+                className="bg-gray-400 dark:bg-[#3B3B3B] w-44 h-[38px] rounded-sm flex items-center"
                 // onClick={handleClick}
               >
                 <input
-                  className="w-32 h-full outline-none p-2 bg-transparent"
+                  className="w-32 h-full outline-none p-2 bg-transparent placeholder-gray-600 dark:placeholder-gray-400 text-gray-800 dark:text-white"
                   placeholder="Any"
                   type="text"
                 />
-                <div className="separator h-[24px] w-[1px] bg-gray-400 mx-1.5"></div>
+                <div className="separator h-[24px] w-[1px] bg-gray-500 mx-1.5"></div>
                 <div className="group h-full w-full flex justify-center items-center">
-                  <div className="w-[10px] h-[10px] border-[2px] rounded-sm group-hover:border-r-[#999999] group-hover:border-b-[#999999]  border-l-transparent border-t-transparent transition-all rotate-45 -translate-y-[2px] -translate-x-[2px]"></div>
+                  <div className="w-[10px] h-[10px] border-[2px] rounded-sm group-hover:border-r-secondary group-hover:border-b-secondary border-r-gray-500 border-b-gray-500 border-l-transparent border-t-transparent transition-all rotate-45 -translate-y-[2px] -translate-x-[2px]"></div>
                 </div>
               </div>
             </div>
@@ -162,6 +181,14 @@ export default function Search() {
           />
         </div>
       </div>
+      <div className="flex items-center justify-center sm:hidden mb-8">
+        <div
+          className="w-8 h-8 shadow-md  bg-gradient-purple rounded-full flex justify-center items-center cursor-pointer p-1"
+          onClick={(e) => handleClick(e)}
+        >
+          <img src="/plus_icon.png" alt="" />
+        </div>
+      </div>
       <section className="animelist w-full">
         <div className="popularlist m-4 flex flex-wrap justify-center xs:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
           {!searchanime
@@ -177,7 +204,7 @@ export default function Search() {
         </div>
       </section>
       <div
-        className={`fixed bottom-[2%] right-[2%] w-12 h-12 shadow-md bg-gray-500 hover:bg-gray-600 dark:bg-gradient-purple dark:hover:bg-slate-400 rounded-full justify-center items-center cursor-pointer ${
+        className={`fixed bottom-[2%] right-[2%] w-12 h-12 shadow-md hover:bg-gray-600 bg-gradient-purple rounded-full justify-center items-center cursor-pointer ${
           !scrollUp ? "hidden" : "flex"
         }`}
         onClick={() =>
@@ -188,7 +215,11 @@ export default function Search() {
           })
         }
       >
-        <img className="w-6 object-cover invert-0" src="/arrow-up.png" alt="" />
+        <img
+          className="w-6 object-cover invert-0"
+          src="/arrow_up_white.png"
+          alt=""
+        />
       </div>
       {/* )} */}
     </>

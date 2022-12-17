@@ -11,7 +11,7 @@ export default function AnimeBanner({ data }: { data: AnimeType }) {
         <div className="bg-gradient-to-r from-[#1b1b1b] to-transparent absolute h-full w-full"></div>
         <img
           className="w-full h-full object-cover"
-          src={data.bannerImage || "?"}
+          src={data.bannerImage || data.coverImage.extraLarge}
           alt=""
         />
       </div>

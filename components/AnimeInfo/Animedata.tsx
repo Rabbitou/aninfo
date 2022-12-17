@@ -11,23 +11,18 @@ export default function Animedata({ data }: { data: Anime }) {
     "milliseconds"
   );
   return (
-    <div className="rounded-sm overflow-hidden bg-[#ada9af] dark:bg-gray-700 flex flex-col basis-[250px] flex-shrink-0 flex-grow-0 md:basis-[400px]">
+    <div className="rounded-sm overflow-hidden bg-gray-300 dark:bg-gray-700 flex flex-col basis-[250px] flex-shrink-0 flex-grow-0 md:basis-[400px] shadow-[0px_2px_8px_#666666] dark:shadow-[0px_2px_8px_#454545]">
       <div className="flex flex-col md:flex-row">
         <Link href={`/anime/${data.id}`} prefetch={false}>
-          <div className="animeimg basis-[200px] h-[350px] flex-grow-0 flex-shrink-0 cursor-pointer hover:opacity-80 transition-all relative">
-            {/* <img
-              className="w-full h-[350px] object-cover"
-              alt="anime img"
-              src={data.coverImage.extraLarge}
-            /> */}
+          <a className="animeimg basis-[200px] h-[350px] flex-grow-0 flex-shrink-0 cursor-pointer hover:opacity-80 transition-all relative">
             <Image
               src={data.coverImage.extraLarge}
               layout={"fill"}
               objectFit={"cover"}
             />
-          </div>
+          </a>
         </Link>
-        <div className="synopsis flex flex-col items-center justify-center bg-[#ada9af] dark:bg-[#272727] h-[250px] md:h-full w-full">
+        <div className="synopsis flex flex-col items-center justify-center bg-gray-300 dark:bg-[#272727] h-[250px] md:h-full w-full">
           <div className="titleepisodes flex flex-col items-center space-x-2">
             <Link href={`/anime/${data.id}`} prefetch={false}>
               <a className="animetitle p-2 text-center hover:text-[#2b2b2bb9] dark:hover:text-[#c7c7c7b9] transition-all">
@@ -53,7 +48,7 @@ export default function Animedata({ data }: { data: Anime }) {
               )}
             </div>
           </div>
-          <div className="detailsstudio p-4 max-h-44 overflow-y-auto text-center text-xs flex flex-col scrollbar-thumb-[#9733ee99] scrollbar-track-[#404040] scrollbar-thin">
+          <div className="detailsstudio p-4 max-h-44 overflow-y-auto text-center text-xs flex flex-col scrollbar-thumb-[#9733ee99] scrollbar-track-gray-400 dark:scrollbar-track-[#404040] scrollbar-thin">
             <p>{parse(data?.description || "No description")}</p>
             <span>
               Studio:{" "}
@@ -63,7 +58,7 @@ export default function Animedata({ data }: { data: Anime }) {
         </div>
       </div>
       <div className="secondary flex flex-col flex-1">
-        <div className="ratingstatus flex md:flex-row flex-col items-center justify-center space-x-4 bg-[#c2bdc5] dark:bg-[#3b3b3b] p-2">
+        <div className="ratingstatus flex md:flex-row flex-col items-center justify-center space-x-4 bg-gray-400 dark:bg-[#3b3b3b] p-2">
           <div className="rating flex items-center">
             <img
               src="/star-small.png"
@@ -79,7 +74,7 @@ export default function Animedata({ data }: { data: Anime }) {
             | {data.episodes || "?"} eps, {data.duration || "?"} min
           </div>
         </div>
-        <div className="genre bg-[#D8D4DA] dark:bg-[#4e4e4e] flex-1 flex  items-center justify-center">
+        <div className="genre bg-gray-300 dark:bg-[#4e4e4e] flex-1 flex  items-center justify-center">
           <ul className="flex space-x-2 flex-wrap p-2 justify-center text-xs md:text-sm">
             {data.genres.map((ge) => (
               <li key={data.id + ge}>{ge}</li>

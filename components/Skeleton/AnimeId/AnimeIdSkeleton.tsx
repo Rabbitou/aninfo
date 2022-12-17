@@ -35,7 +35,7 @@ export default function AnimeIdSkeleton() {
               />
             </div>
             <div className="flex flex-col mt-10 md:mt-[180px] px-6">
-              <h4 className="text-2xl h-8 w-[350px] md:w-[420px] text-center md:text-left font-bold uppercase mb-4">
+              <h4 className="text-2xl h-8 w-[270px] md:w-[420px] text-center md:text-left font-bold uppercase mb-4">
                 <Skeleton
                   variant="rectangular"
                   width={"100%"}
@@ -43,7 +43,7 @@ export default function AnimeIdSkeleton() {
                   sx={{ bgcolor: "#505050" }}
                 />
               </h4>
-              <p className="h-36 w-[350px] md:w-[420px]">
+              <p className="h-36 w-[270px] md:w-[420px]">
                 {" "}
                 <Skeleton
                   variant="rectangular"

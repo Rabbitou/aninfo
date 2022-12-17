@@ -13,7 +13,7 @@ function Overview({ data }: { data: AnimeDetails }) {
     <div className="flex flex-col gap-6 w-full">
       <div className="relations">
         <h3 className="font-semibold text-lg">Relations</h3>
-        <hr className="w-[50%]" />
+        <hr className="w-[50%] border-black dark:border-white" />
         <div className="flex flex-wrap gap-6 mt-6">
           {data.relations?.nodes.map((anime, i) => (
             <TinyAnimeData key={i} data={anime} />
@@ -22,7 +22,7 @@ function Overview({ data }: { data: AnimeDetails }) {
       </div>
       <div className="characters">
         <h3 className="font-semibold text-lg">Characters</h3>
-        <hr className="w-[50%]" />
+        <hr className="w-[50%] border-black dark:border-white" />
         <div className="flex flex-wrap gap-4 mt-6">
           {data.characters.nodes.slice(0, 6).map((c, i) => (
             <CharactersCard key={i} data={c} />
@@ -31,7 +31,7 @@ function Overview({ data }: { data: AnimeDetails }) {
       </div>
       <div className="staff">
         <h3 className="font-semibold text-lg">Staff</h3>
-        <hr className="w-[50%]" />
+        <hr className="w-[50%] border-black dark:border-white" />
         <div className="flex flex-wrap gap-4 mt-6">
           {data.staff.nodes.slice(0, 6).map((s, i) => (
             <StaffCard key={i} data={s} />
@@ -41,7 +41,7 @@ function Overview({ data }: { data: AnimeDetails }) {
       {data.trailer && (
         <div className="trailer">
           <h3 className="font-semibold text-lg">Trailer</h3>
-          <hr className="w-[50%]" />
+          <hr className="w-[50%] border-black dark:border-white" />
           <div className="mt-6 w-3/4">
             <iframe
               className="aspect-video w-full"

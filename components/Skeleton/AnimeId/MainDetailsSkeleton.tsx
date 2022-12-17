@@ -8,7 +8,7 @@ export default function MainDetailsSkeleton() {
     <div className="flex flex-col gap-6">
       <div className="relations">
         <h3 className="font-semibold text-lg">Relations</h3>
-        <hr className="w-[50%]" />
+        <hr className="w-[50%] border-black dark:border-white" />
         <div className="flex flex-wrap gap-6 mt-6">
           {[...new Array(5)].map((_, i) => (
             <TinyAnimeSkeleton key={i} />
@@ -17,7 +17,7 @@ export default function MainDetailsSkeleton() {
       </div>
       <div className="characters">
         <h3 className="font-semibold text-lg">Characters</h3>
-        <hr className="w-[50%]" />
+        <hr className="w-[50%] border-black dark:border-white" />
         <div className="flex flex-wrap gap-4 mt-6">
           {[...new Array(5)].map((_, i) => (
             <CharacStaffSkeleton key={i} />
@@ -26,7 +26,7 @@ export default function MainDetailsSkeleton() {
       </div>
       <div className="staff">
         <h3 className="font-semibold text-lg">Staff</h3>
-        <hr className="w-[50%]" />
+        <hr className="w-[50%] border-black dark:border-white" />
         <div className="flex flex-wrap gap-4 mt-6">
           {[...new Array(5)].map((_, i) => (
             <CharacStaffSkeleton key={i} />
