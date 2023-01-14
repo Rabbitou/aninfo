@@ -16,10 +16,10 @@ export default function AnimeBanner({ data }: { data: AnimeType }) {
         />
       </div>
       <div className="flex flex-col pt-16 px-10 w-full md:w-[50%] relative">
-        <h1 className="pb-10 font-bold text-3xl text-white">
+        <h1 className="text-ellipsis line-clamp-3 font-bold text-3xl text-white">
           {data.title.romaji || "?"}
         </h1>
-        <p className="mb-5 text-ellipsis line-clamp-3 text-white opacity-70">
+        <p className="mt-10 mb-5 text-ellipsis line-clamp-3 text-white opacity-70">
           {parse(data?.description || "No description")}
         </p>
         <Link href={`/anime/${data.id}`} prefetch={false}>
